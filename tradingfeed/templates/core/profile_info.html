@@ -1,0 +1,86 @@
+{% extends 'core/my_profile.html' %}
+{% load static %}
+{% block companyInfo %}
+<link rel="stylesheet" href="{% static './css/my_profile.css' %}" />
+      <h5>Personal Information</h5>
+
+      <div class="d-flex justify-content-between" style="margin-top:40px">
+
+        <div class="d-flex detail-box" >
+          <div class="rounded d-flex justify-content-center align-items-center" style="border:1px solid rgb(186, 179, 179); width: 50px;">
+            <i class="far fa-user bg-grey"></i>
+          </div>
+          <div class="d-flex flex-column justify-content-between">
+            <div style="color: rgb(126, 125, 125); font-size: 13px;">Full Name</div>
+            <div>{{profile.user.first_name}} {{profile.user.last_name}}</div>
+          </div>
+        </div>
+
+        <div class="d-flex detail-box" >
+          <div class="rounded d-flex justify-content-center align-items-center" style="border:1px solid rgb(186, 179, 179); width: 50px;">
+            <i class="far fa-building bg-grey"></i>
+          </div>
+          <div class="d-flex flex-column justify-content-between">
+            <div style="color: rgb(126, 125, 125); font-size: 13px;">Company Name</div>
+            <div>{{profile.company_name}}</div>
+          </div>
+        </div>
+
+        <div class="d-flex detail-box" >
+          <div class="rounded d-flex justify-content-center align-items-center" style="border:1px solid rgb(186, 179, 179); width: 50px;">
+            <i class="fas fa-phone bg-grey"></i>
+          </div>
+          <div class="d-flex flex-column justify-content-between">
+            <div style="color: rgb(126, 125, 125); font-size: 13px;">Phone Number</div>
+            <div>{{profile.phone_number}}</div>
+          </div>
+        </div>
+
+        <div class="d-flex detail-box" >
+          <div class="rounded d-flex justify-content-center align-items-center" style="border:1px solid rgb(186, 179, 179); width: 50px;">
+            <i class="far fa-envelope bg-grey"></i>
+          </div>
+          <div class="d-flex flex-column justify-content-between">
+            <div style="color: rgb(126, 125, 125); font-size: 13px;">Email Address</div>
+            <div>{{profile.email_address}}</div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin-top: 40px"/>
+
+      <h5>Payment Information</h5>
+
+      <div class="d-flex justify-content-between" style="margin-top:40px; gap:65px">
+        <div class="d-flex justify-content-start">
+          <div class="d-flex detail-box">
+            <div class="rounded d-flex justify-content-center align-items-center" style="border:1px solid rgb(186, 179, 179); width: 50px;">
+              <i class="far fa-credit-card bg-grey"></i>
+            </div>
+            <div class="d-flex flex-column justify-content-between">
+              <div style="color: rgb(126, 125, 125); font-size: 13px;">Method</div>
+              <div>-</div>
+            </div>
+          </div>
+          
+          <div class="d-flex detail-box">
+            <div class="rounded d-flex justify-content-center align-items-center" style="border:1px solid rgb(186, 179, 179); width: 50px;">
+              <i class="far fa-address-card bg-grey"></i>
+            </div>
+            <div class="d-flex flex-column justify-content-between">
+              <div style="color: rgb(126, 125, 125); font-size: 13px;">Card number</div>
+              <div>-</div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="background-color:RGB(15 42 109)!important">Manage Plan</button>
+      </div>
+
+      <hr style="margin-top: 40px"/>
+
+      <div class="d-flex justify-content-end align-items-center" style="padding: 10px; gap:15px">
+        <span style="font-size: 17px;">Need to update your Information?</span>
+        <a href="{% url 'contact' %}" class="bg-transparent border-0 rounded" style="padding:10px 20px; outline:1px solid rgb(169, 169, 169); color: black !important;"><i class="fas fa-envelope bg-grey mr-2"></i>Contact Us</a>
+      </div>
+{% endblock %}
+

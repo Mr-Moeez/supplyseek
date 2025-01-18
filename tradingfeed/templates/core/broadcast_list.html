@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Broadcasts</h1>
+  {% if broadcasts %}
+    <ul>
+      {% for broadcast in broadcasts %}
+        <li>{{ broadcast.title }}</li> 
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No broadcasts found.</p>
+  {% endif %}
+{% endblock %}

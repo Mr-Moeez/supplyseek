@@ -1,0 +1,343 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    color: rgb(75, 92, 122);
+    font-family: 'Inter', sans-serif;
+}
+
+.left-side {
+    background-color: rgb(13, 38, 89);
+    height: 100vh;
+    color: white;
+}
+
+.right-side {
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.signup-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.password-strength .strength-bar {
+    background-color: #e0e0e0;
+    margin: 0 2px;
+    height: 5px;
+    flex-grow: 1;
+}
+
+.password-strength .strength-bar.strong {
+    background-color: #4caf50;
+}
+
+.password-strength .strength-bar.medium {
+    background-color: #ff9800;
+}
+
+.password-strength .strength-bar.weak {
+    background-color: #f44336;
+}
+
+.signup-main{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 20rem;
+    z-index: 2;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    border-radius: 10px;
+}
+
+.verification-form-container {
+    margin: 50px auto;
+    background: white !important;
+    border-radius: 10px;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.progress-step {
+    width: 30%;
+    text-align: center;
+    color: #6c757d;
+}
+
+.progress-step.active {
+    color: rgb(25, 62, 138);
+}
+
+.progress-step.done::before {
+    background-color: green;
+}
+
+.progress-step::before {
+    content: '';
+    display: block;
+    margin: 0 auto 10px;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid rgb(75, 92, 122);
+}
+
+.progress-step.active::before {
+    background-color: rgb(25, 62, 138);
+}
+
+.custom-control-label {
+    font-size: 14px;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    font-size: 0.875rem;
+}
+
+.form-text {
+    margin-top: 1rem;
+}
+
+.next-button {
+    background-color: rgb(25, 62, 138);
+    color: white;
+    width: 100px;
+    float: right;
+    border: none;
+}
+
+.next-button:hover {
+    background-color: rgb(25, 62, 138);
+}
+
+a {
+    color: rgb(25, 62, 138);
+}
+
+a:hover {
+    color: rgb(25, 62, 138);
+}
+
+.error-message {
+    color: red;
+    display: none;
+}
+.form-check-label a {
+    color: rgb(13, 38, 89);
+}
+.invalid-feedback {
+    display: block;
+}
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+.form-control.is-invalid + .invalid-feedback {
+    display: block;
+}
+
+.verification-container {
+    padding: 40px 0;
+    border-radius: 8px;
+    margin-top: 5rem;
+    padding-left: 25px;
+}
+
+.verification-title {
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.verification-title .user-icon {
+    width: 50px;
+    margin-bottom: 20px;
+}
+
+.verification-form {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 0px;
+    overflow-wrap: break-word;
+    --card-bg: var(--chakra-colors-chakra-subtle-bg);
+    color: var(--chakra-colors-chakra-body-text);
+    --card-radius: var(--chakra-radii-md);
+    --card-padding: var(--chakra-space-5);
+    border: var(--chakra-borders-none);
+    background: rgb(244, 246, 250);
+    border-radius: 12px;
+    width: var(--chakra-sizes-full);
+    margin-top: 1.5rem;
+    opacity: 1;
+    user-select: auto;
+}
+
+.verification-field {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.verification-field label {
+    display: block;
+    font-weight: bold;
+    color: rgb(13, 38, 89);
+}
+
+.verification-field p {
+    margin-bottom: 10px;
+    color: #6c757d;
+}
+
+#resend-timer {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.alert-info {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+    color: #495057;
+}
+
+.resend-link {
+    display: inline-flex;
+    appearance: none;
+    align-items: left;
+    -webkit-box-pack: left;
+    justify-content: left;
+    user-select: none;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    line-height: 1.2;
+    border-radius: 6px;
+    transition-property: var(--chakra-transition-property-common);
+    transition-duration: var(--chakra-transition-duration-normal);
+    height: 2.5rem;
+    padding-inline: 0.75rem;
+    background: var(--chakra-colors-transparent);
+    color: rgb(20, 49, 110);
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* 
+.container-fluid {
+    height: 100vh;
+} */
+
+/* .left-side {
+    background-color: #0D2659;
+    height: 100vh;
+} */
+/* 
+.signup-main h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.signup-main p {
+    font-size: 1.2rem;
+} */
+
+.form-title h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-title p {
+    font-size: 1rem;
+    color: #707070;
+}
+
+/* .form-group label {
+    font-weight: bold;
+} */
+
+.form-group .form-control {
+
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.invalid-feedback {
+    display: block;
+    color: red;
+}
+
+.btn.next-button {
+    background-color: #0D2659;
+    border-color: #0D2659;
+    color: white;
+    border-radius: 8px;
+}
+
+.btn.next-button:hover {
+    background-color: #0b1f47;
+    border-color: #0b1f47;
+}
+
+.radio-input {
+    margin-top: 0.3rem;
+    margin-left: 0.3rem;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.radio-label {
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 28px;
+    /* width: 179px; */
+    color: #6c757d;
+}
+
+.select2-container .select2-selection--single {
+    width: 285px;
+    height: calc(1.5em + .75rem);
+}
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: calc(1.5em + .75rem) !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+    display: none;
+}
+.flag-icon.flag-icon-squared {
+    width: 1em;
+    margin-right: 10px;
+}

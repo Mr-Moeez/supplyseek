@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Company Details</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <style>
+            .select2-container--default .select2-selection--single .select2-selection__rendered img {
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 left-side d-flex align-items-center justify-content-center text-center">
+                <div class="signup-main">
+                    <h1 class="text-white">Trade more, faster 🚀</h1>
+                    <p class="text-white">Broadcast your next opportunity with Supplyseek</p>
+                </div>
+            </div>
+            
+            <div class="verification-form-container col-md-6" style="padding-left: 130px; padding-right: 130px;">
+                <div class="progress-container">
+                    <div class="progress-step active">Account</div>
+                    <div class="progress-step active">Verification</div>
+                    <div class="progress-step active">Company Details</div>
+                </div>
+                <br/>
+                <div class="form-title">
+                    <h2>Tell us about your company</h2>
+                    <p>We’ll verify all account information, so you can send approval documents later.</p>
+                </div>
+
+                <form id="company-form" method="post" action="{% url 'authentication_app:create_company' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <span class="invalid-feedback" id="name-error" style="display: block;">{{ form.name.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.website }}
+                            {% if form.website.errors %}
+                                <span class="invalid-feedback" id="website-error" style="display: block;">{{ form.website.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.street }}
+                            {% if form.street.errors %}
+                                <span class="invalid-feedback" id="street-error" style="display: block;">{{ form.street.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.postal_code }}
+                            {% if form.postal_code.errors %}
+                                <span class="invalid-feedback" id="postal-code-error" style="display: block;">{{ form.postal_code.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.country }}
+                            {% if form.country.errors %}
+                                <span class="invalid-feedback" id="country-error" style="display: block;">{{ form.country.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.state }}
+                            {% if form.state.errors %}
+                                <span class="invalid-feedback" id="state-error" style="display: block;">{{ form.state.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.city }}
+                            {% if form.city.errors %}
+                                <span class="invalid-feedback" id="city-error" style="display: block;">{{ form.city.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.registration_number }}
+                            {% if form.registration_number.errors %}
+                                <span class="invalid-feedback" id="registration-number-error" style="display: block;">{{ form.registration_number.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.vat }}
+                            {% if form.vat.errors %}
+                                <span class="invalid-feedback" id="vat-error" style="display: block;">{{ form.vat.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.other_b2b }}
+                            {% if form.other_b2b.errors %}
+                                <span class="invalid-feedback" id="other-b2b-error" style="display: block;">{{ form.other_b2b.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-between" style="margin: 25px">
+                        <a href="{% url 'authentication_app:verify_email' %}"><i class="fa fa-arrow-left"></i> <strong>Back</strong></a>
+                        <button type="submit" class="btn next-button">Signup</button>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_country').select2({
+                templateResult: formatCountry,
+                templateSelection: formatCountry,
+                width: 'style'
+            });
+
+            function formatCountry(country) {
+                if (!country.id) {
+                    return country.text;
+                }
+                var baseUrl = "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/flags/4x3/";
+                var $country = $(
+                    '<span class="flag-icon flag-icon-' + country.element.value.toLowerCase() + ' flag-icon-squared"></span>' +
+                    '<span>' + country.text + "</span>"
+                );
+                return $country;
+            }
+
+            function adjustCountryDropdown() {
+                var stateInputWidth = $('#id_state').outerWidth();
+                var $countrySelect = $('#id_country').next('.select2-container');
+
+                $countrySelect.css('width', stateInputWidth);
+            }
+
+            adjustCountryDropdown();
+            $(window).resize(function() {
+                adjustCountryDropdown();
+            });
+        });
+    </script>
+</body>
+</html>

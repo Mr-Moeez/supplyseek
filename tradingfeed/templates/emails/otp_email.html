@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email Address</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #cbc7c7;
+        }
+        .header {
+            background-color: #002855;
+            padding: 20px;
+            padding-left: 40px;
+            text-align: left;
+            color: white;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .header img {
+            max-width: 200px;
+        }
+        .content {
+            padding: 30px;
+            color: #333333;
+        }
+        .content h2 {
+            color: #002855;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .content p {
+            margin: 20px 0;
+        }
+        .content hr{
+        	margin: 30px 0px 30px 0px;
+        }
+        .otp-code {
+            font-size: 32px;
+            font-weight: bold;
+            color: #002855;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #002855;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Supply Seek
+        </div>
+        <div class="content">
+            <h2>Verify your email address</h2>
+            <p>Hi {{ user }},</p>
+            <p>You're one step closer to trading like a pro!</p>
+            <p>Please enter this code on the platform to verify your email address:</p>
+            <div class="otp-code">{{ otp }}</div>
+            <p>Thank you,<br>Your Team at Supplyseek</p>
+            <hr />
+            <p>Need help? Contact <a href="mailto:support@supplyseek.com">support@supplyseek.com</a> for assistance.</p>
+            <p>
+        </div>
+        <div class="footer">
+            <h4>Supply Seek</h4>
+            <div>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

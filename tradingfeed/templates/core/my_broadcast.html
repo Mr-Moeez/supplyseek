@@ -1,0 +1,449 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static './css/home.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My broadcast</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.11/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs0.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <head>
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <!-- Your custom CSS -->
+    </head>
+</head>
+<body>
+<link rel="stylesheet" href="{% static './css/my_broadcast.css' %}">
+
+<div class="d-flex justify-content-between align-items-center head">
+    <h5>My Broadcasts</h5>
+    <div class="actions">
+        <button class="btn-custom" id="deleteAllButton"><i class="fas fa-trash"></i> <b>Delete All</b></button>
+        <a class="btn-custom" href="{% url 'export_broadcasts_csv' %}"><i class="fas fa-file-export"></i> <b>Export</b></a>
+        <div class="dropdown d-inline-block">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="addBroadcastDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add Broadcast
+            </button>
+            <div class="dropdown-menu my-menu" aria-labelledby="addBroadcastDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#manualInputModal"><i class="fas fa-keyboard"></i> Manual Input</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#generateWithAiModal"><i class="fas fa-magic"></i> Generate with AI</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#importCSVModal"><i class="fas fa-file-csv"></i> Upload a CSV file</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card container">
+    <div class="card-body">
+        <div class="table-header-above">
+            <div id="totalPublished">
+                Total Published &nbsp;| &nbsp;<span id="totalCount">0</span> broadcasts
+            </div>
+            
+            <!-- <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search">
+            </div> -->
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="sortable">TYPE</th>
+                        <th scope="col" class="sortable">BRAND</th>
+                        <th scope="col" class="sortable">TITLE & CATEGORY</th>
+                        <th scope="col" class="sortable">CONDITION</th>
+                        <th scope="col" class="sortable">PRICE</th>
+                        <th scope="col" class="sortable">QTY</th>
+                        <th scope="col" class="sortable">COUNTRY</th>
+                        <th scope="col" class="sortable">SOURCE</th>
+                        <th scope="col" class="sortable">DATE</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for broadcast in broadcasts %}
+                    <tr class="broadcast-row" data-id="{{ broadcast.id }}">
+                        <td>
+                            <span class="badge badge-success">
+                                <span class="green-dot"></span>
+                                {{ broadcast.get_type_display }}
+                            </span>
+                        </td>
+                        <td>{{ broadcast.brand }}</td>
+                        <td>
+                            <div class="title" data-full-title="{{ broadcast.title }}">
+                                {{ broadcast.title|truncatewords:6 }}
+                            </div>
+                            <div>
+                                {{ broadcast.get_category_display }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge-secondary">
+                                {{ broadcast.get_condition_display }}
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </td>
+                        <td>{{ broadcast.price }}</td>
+                        <td>{{ broadcast.quantity }}</td>
+                        <td><img src="https://www.countryflags.io/{{ broadcast.country }}/flat/32.png" alt="{{ broadcast.country }}"></td>
+                        <td>{{ broadcast.source }}</td>
+                        <td>{{ broadcast.date_created|date:"Y-m-d" }}</td>
+                        <td>
+                            <button class="btn btn-outline-secondary btn-sm edit-button" data-id="{{ broadcast.id }}" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm delete-button" data-id="{{ broadcast.id }}"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-outline-primary btn-sm copy-button" data-id="{{ broadcast.id }}"><i class="fas fa-copy"></i></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+            <div class="title-card" id="titleCard"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Manual Input Modal -->
+<div class="modal fade" id="manualInputModal" tabindex="-1" aria-labelledby="manualInputModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="manualInputModalLabel">Generate a new broadcast</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <h2>Add Broadcast</h2>
+                    <form method="post" action="{% url 'broadcast_add' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Add Broadcast</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Generate With AI Modal -->
+<div class="modal fade" id="generateWithAiModal" tabindex="-1" aria-labelledby="generateWithAiModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generateWithAiModalLabel">Generate a new broadcast</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <h2>Add Broadcast</h2>
+                    <form method="post" action="{% url 'broadcast_add' %}">
+                        {% csrf_token %}
+                        <textarea name="broadcast_data" placeholder="Write your broadcast in the following way: 
+
+Type: WTS | WTB | ALL
+Brand: Apple
+Title: Meta Quest 3 128GB
+Category: Electronics
+Condition: NEW | USED | ALL
+Price: 465.90 EUR
+Qty: 250
+Country: UK | USA | PK
+Source: whatsapp | fb | ad
+Description: if any" style="width:100%" rows="15"></textarea>
+                        <button type="submit" class="btn btn-primary">Add Broadcast</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Import CSV Modal -->
+<div class="modal fade" id="importCSVModal" tabindex="-1" aria-labelledby="importCSVModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importCSVModalLabel">Upload CSV file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <h2>Import Broadcasts</h2>
+                    <form method="post" action="{% url 'import_broadcasts' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="file">Choose CSV File</label>
+                            <input type="file" class="form-control-file" id="file" name="file" accept=".csv" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Broadcast</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="editFormBody">
+                <!-- Form will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Broadcast Details Modal -->
+<div class="modal fade" id="broadcastDetailsModal" tabindex="-1" aria-labelledby="broadcastDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="broadcastDetailsModalLabel">Broadcast Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="broadcastDetailsBody">
+                <!-- Details will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSRF token for JavaScript -->
+<input type="hidden" id="csrfToken" value="{{ csrf_token }}">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all broadcast rows
+    
+    // Calculate total broadcasts
+    const csrfToken = document.getElementById('csrfToken').value;
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    const editButtons = document.querySelectorAll('.edit-button');
+    const copyButtons = document.querySelectorAll('.copy-button');
+    const broadcastRows = document.querySelectorAll('.broadcast-row');
+
+    const totalPublishedDiv = document.getElementById('totalPublished');
+    const totalCountSpan = document.getElementById('totalCount');
+    
+    // Access the broadcast rows
+    
+    // Set the initial total count
+    totalCountSpan.textContent = broadcastRows.length;
+
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent row click event
+            const broadcastId = this.getAttribute('data-id');
+
+            if (confirm('Are you sure you want to delete this broadcast?')) {
+                fetch(`/broadcasting/delete/${broadcastId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken,
+                    },
+                    body: JSON.stringify({ id: broadcastId })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.querySelector(`.broadcast-row[data-id="${broadcastId}"]`).remove();
+                    } else {
+                        alert('Failed to delete the broadcast.');
+                    }
+                });
+            }
+        });
+    });
+
+    document.getElementById('deleteAllButton').addEventListener('click', function() {
+        if (confirm('Are you sure you want to delete all broadcasts?')) {
+            fetch(`/broadcasting/delete_all/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.querySelectorAll('.broadcast-row').forEach(row => row.remove());
+                } else {
+                    alert('Failed to delete all broadcasts.');
+                }
+            });
+        }
+    });
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent row click event
+            const broadcastId = this.getAttribute('data-id');
+
+            fetch(`/broadcasting/edit/${broadcastId}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('editFormBody').innerHTML = data.form_html;
+
+                // Add form submission handler
+                const editForm = document.getElementById('editForm');
+                editForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(this);
+
+                    fetch(`/broadcasting/edit/${broadcastId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrfToken,
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            location.reload();
+                        } else {
+                            document.getElementById('editFormBody').innerHTML = data.form_html;
+                        }
+                    });
+                });
+
+                $('#editModal').modal('show');
+            });
+        });
+    });
+
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent row click event
+            const broadcastId = this.getAttribute('data-id');
+
+            fetch(`/broadcasting/details/${broadcastId}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                const details = `
+                    Type: ${data.type}
+                    Brand: ${data.brand}
+                    Title: ${data.title}
+                    Category: ${data.category}
+                    Condition: ${data.condition}
+                    Price: ${data.price}
+                    Quantity: ${data.quantity}
+                    Country: ${data.country}
+                    Source: ${data.source}
+                    Date Created: ${data.date_created}
+                    Status: ${data.status}
+                    Description: ${data.description}
+                    Currency: ${data.currency}
+                `;
+                navigator.clipboard.writeText(details).then(() => {
+                    alert('Broadcast details copied to clipboard');
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching broadcast details:', error);
+            });
+        });
+    });
+
+    broadcastRows.forEach(row => {
+        row.addEventListener('click', function() {
+            const broadcastId = this.getAttribute('data-id');
+
+            fetch(`/broadcasting/details/${broadcastId}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('broadcastDetailsBody').innerHTML = `
+                    <p><strong>Type:</strong> ${data.type}</p>
+                    <p><strong>Brand:</strong> ${data.brand}</p>
+                    <p><strong>Title:</strong> ${data.title}</p>
+                    <p><strong>Category:</strong> ${data.category}</p>
+                    <p><strong>Condition:</strong> ${data.condition}</p>
+                    <p><strong>Price:</strong> ${data.price}</p>
+                    <p><strong>Quantity:</strong> ${data.quantity}</p>
+                    <p><strong>Country:</strong> ${data.country}</p>
+                    <p><strong>Source:</strong> ${data.source}</p>
+                    <p><strong>Date Created:</strong> ${data.date_created}</p>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Description:</strong> ${data.description}</p>
+                    <p><strong>Currency:</strong> ${data.currency}</p>
+                `;
+                $('#broadcastDetailsModal').modal('show');
+            })
+            .catch(error => {
+                console.error('Error fetching broadcast details:', error);
+            });
+        });
+    });
+
+    document.querySelectorAll('.title').forEach(function(element) {
+        element.addEventListener('mouseenter', function(event) {
+            const titleCard = document.getElementById('titleCard');
+            const rect = element.getBoundingClientRect();
+            titleCard.textContent = element.getAttribute('data-full-title');
+            titleCard.style.display = 'block';
+            titleCard.style.position = 'absolute';
+            titleCard.style.top = `${rect.top + window.scrollY}px`;
+            titleCard.style.left = `${rect.left + window.scrollX}px`;
+        });
+
+        element.addEventListener('mouseleave', function() {
+            const titleCard = document.getElementById('titleCard');
+            titleCard.style.display = 'none';
+        });
+    });
+});
+</script>
+
+</body>
+{% endblock %}

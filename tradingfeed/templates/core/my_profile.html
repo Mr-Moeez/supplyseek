@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static './css/my_profile.css' %}" />
+<div class="d-flex justify-content-between align-items-center head">
+  <h5>My Profile</h5>
+  </div>
+</div>
+
+<div class="w-100" style="padding:0px 100px; box-sizing: border-box;">
+  <div style="border:1px solid rgb(235, 237, 240); margin-bottom: 35px; border-radius: 11px; overflow: hidden;">
+    <div class="d-flex justify-content-between align-items-center bg-white rounded-top" style="padding: 20px;">
+        <div class="d-flex" style="gap:10px">
+          {% if profile and profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="" width="100px" height="100px" class="rounded-circle">
+          {% else %}
+            <div class="rounded-circle" style="height: 100px; width: 100px; background-color: rgba(144, 122, 122, 0.1);"></div>
+          {% endif %}
+          <div class="d-flex flex-column justify-content-around">
+            <h5>{{profile.user.first_name}} {{profile.user.last_name}}</h5>
+            <h6>{{profile.user.id}}</h6>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center p-2 rounded" style="background-color: rgb(215, 225, 248);">
+          <button class="bg-transparent border-0 rounded"><i class="fas fa-certificate mr-1 bg-grey"></i>Basic</button>
+          <button class="btn btn-primary" style="background-color:RGB(15 42 109)!important">Upgrade To Premium</button>
+        </div>
+    </div>
+    <div class="h-10 d-flex justify-content-start" style="padding: 30px 25px 0px 25px;">
+      <a href="{% url 'profile_info'  %}" class="profile-tag {% if active_tab == 'profile' %}active-profile-tag{% endif %}">Profile</a>
+      <a href="{% url 'company_info'  %}" class="profile-tag {% if active_tab == 'company' %}active-profile-tag{% endif %}">Company Info</a>
+      <a href="{% url 'security_info'  %}" class="profile-tag {% if active_tab == 'security' %}active-profile-tag{% endif %}">Security</a>
+      <a href="{% url 'public_profile'  %}" class="profile-tag {% if active_tab == 'public_profile' %}active-profile-tag{% endif %}">Public Profile</a>
+    </div>
+    <div class="bg-white w-100" style="padding: 40px 25px 25px 25px;">
+      {% block profileInfo %}
+      {% endblock %}
+      {% block companyInfo %}
+      {% endblock %}
+      {% block security %}
+      {% endblock %}
+      {% block publicProfile %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

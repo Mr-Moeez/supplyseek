@@ -1,0 +1,245 @@
+h2 {
+    text-align: center;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    height: 75vh;
+}
+.left-half {
+    background-color: RGB(3, 42, 81);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 20px;
+    color: #fff;
+    height: 100%;
+    width: 500px;
+}
+.right-half {
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 400px;
+}
+.info-item {
+    margin-bottom: 20px;
+}
+.info-item h4 {
+    margin-bottom: 10px;
+}
+form {
+    width: 100%;
+}
+.form-control {
+    height: 45px;
+    font-size: 16px;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+    margin-top: 30px;
+}
+.register-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+}
+input{
+    width: 250px;
+    border-radius: 5px ;
+    border: solid 1px ;
+    padding: 5px;
+}
+label{
+    padding: 2px;
+}
+#id_password {
+    margin-left:4px;
+    
+}
+.my-btn {
+  background: #007bff; /* Primary blue color */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  border: none; /* Remove default border */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+  width: 250px;
+  margin-left: 85px;
+  margin-bottom: 50px;
+}
+
+.my-btn:hover {
+  background: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.my-btn:active {
+  background: #004494; /* Even darker blue on click */
+  transform: scale(1); /* Return to original size on click */
+}
+
+.my-btn:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+}
+
+.css-1je6ctz {
+  display: flex;
+  flex-direction: column;
+  gap: var(--chakra-space-xl);
+  padding: 120px 30px 86px 40px;
+}
+
+.css-zf8ab9 {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 400px;
+  background: rgb(13, 38, 89);
+}
+
+.css-d526n5 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 130%;
+  color: rgb(75, 92, 122);
+}
+
+@media screen and (min-width: 62em) {
+  .css-tp9y9j {
+      font-size: 0.875rem;
+  }
+}
+.css-tp9y9j {
+  font-weight: 400;
+  line-height: 140%;
+  color: rgb(100, 113, 136);
+  margin-top: var(--chakra-space-xs);
+  font-size: 0.75rem;
+}
+
+.css-r1kjwh {
+  display: flex;
+  flex-direction: column;
+  gap: var(--chakra-space-l);
+  margin-top: 32px;
+}
+
+.css-1q8bs4s {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-top: var(--chakra-space-l);
+  padding: var(--chakra-space-xs);
+}
+
+.css-gmuwbf {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-title {
+  font-size: 2rem;
+  color: #0d2659;
+}
+
+.card-text {
+  color: #0d2659;
+  font-size: 1rem;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-unstyled li {
+  font-size: 1rem;
+  color: #0d2659;
+  padding: 5px 0;
+}
+
+.list-unstyled li i {
+  color: #ffcc00;
+  margin-right: 10px;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.btn-block {
+  background-color: #0d2659;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-block:hover {
+  background-color: #0a1e45;
+}
+
+.form-control:focus {
+  border-color: #0d2659;
+  box-shadow: 0 0 0 0.2rem rgba(13, 38, 89, 0.25);
+}
+.css-6psokr {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 140%;
+  color: rgb(19, 57, 134);
+}
+.login-error{
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    height: 28px;
+    color: red;
+}

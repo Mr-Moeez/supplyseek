@@ -1,0 +1,607 @@
+{% extends 'core/base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static './css/my_broadcast.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<div class="background">
+    <form method="get" id="filter-form">
+        <div class="container search-container">
+            <div class="search-tabs">
+                <button type="button" class="search-tab active" id="search-broadcasts-tab" onclick="window.location.href='/broadcasting/broadcasts/'">Broadcasts</button>
+                <button type="button" class="search-tab" id="search-companies-tab">Companies</button>
+            </div>
+            <div class="search-input-container">
+                <input type="text" class="search-input" placeholder="Search keywords" name="search" value="{{ filter_form.search.value|default_if_none:'' }}">
+                <button class="search-filter-button" type="button" onclick="toggleFilters()"><i class="fas fa-sliders-h"></i></button>
+                <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
+                <button class="search-button" type="button" onclick="clearSearch()" style="background-color: lightgray;"><i class="fas fa-times" style="color: gray;"></i></button>
+                <div class="search-options">
+                    <button type="button" class="search-option active" onclick="applyTypeFilter('ALL')">ALL</button>
+                    <button type="button" class="search-option" onclick="applyTypeFilter('WTS')">WTS</button>
+                    <button type="button" class="search-option" onclick="applyTypeFilter('WTB')">WTB</button>
+                </div>
+            </div>
+        </div>
+        <div id="filter-section" style="display: none;">
+            <div class="filter-form">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="category">Category</label>
+                        {{ filter_form.category }}
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="brand">Brand</label>
+                        {{ filter_form.brand }}
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="condition">Condition</label>
+                        {{ filter_form.condition }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="country">Country</label>
+                        {{ filter_form.country }}
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="min_quantity">Min Quantity</label>
+                        {{ filter_form.min_quantity }}
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="max_quantity">Max Quantity</label>
+                        {{ filter_form.max_quantity }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="min_price">Min Price</label>
+                        {{ filter_form.min_price }}
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="max_price">Max Price</label>
+                        {{ filter_form.max_price }}
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="currency">Currency</label>
+                        {{ filter_form.currency }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-outline-secondary clear-btn" type="button" onclick="clearFilters()">
+                            <i class="fas fa-trash"></i> Clear Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card container">
+    <div class="card-body">
+        <div class="table-header-above">
+            <div id="totalPublished">
+                Search Results &nbsp;| &nbsp;<span id="totalCount">{{ total_count }}</span> broadcasts
+            </div>
+            <div class="dropdown d-inline-block">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="addBroadcastDropdown" data-toggle="dropdown" aria-expanded="false">
+                    Add Broadcast
+                </button>
+                <div class="dropdown-menu my-menu" aria-labelledby="addBroadcastDropdown">
+                    <a class="dropdown-item dropdown css-18esm8n" href="#" data-toggle="modal" data-target="#manualInputModal"><i class="fas fa-keyboard"></i> Manual Input</a>
+                    <a class="dropdown-item dropdown css-18esm8n" href="#" data-toggle="modal" data-target="#generateWithAiModal"><i class="fas fa-magic"></i> Generate with AI</a>
+                    <a class="dropdown-item dropdown css-18esm8n" href="#" data-toggle="modal" data-target="#importCSVModal"><i class="fas fa-file-csv"></i> Upload a CSV file</a>
+                </div>
+                <a href="{% url 'user_bookmarks' %}" class="btn btn-outline-secondary bookmark-buttona btn-sm my-bookmark">
+                    <i class="far fa-bookmark"></i>
+                </a>
+                <a href="{% url 'create_alert' %}" class="btn btn-outline-secondary btn-sm bookmark-buttona my-bookmark" data-id="{{ broadcast.id }}">
+                    <i class="fas fa-broadcast-tower"></i>
+                </a>
+                <a href="{% url 'my_broadcasts' %}" class="btn btn-outline-secondary btn-sm bookmark-buttona my-bookmark" data-id="{{ broadcast.id }}">
+                    <i class="fas fa-file-alt"></i>
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="sortable">TYPE</th>
+                        <th scope="col" class="sortable">BRAND</th>
+                        <th scope="col" class="sortable">TITLE & CATEGORY</th>
+                        <th scope="col" class="sortable">CONDITION</th>
+                        <th scope="col" class="sortable">PRICE</th>
+                        <th scope="col" class="sortable">QTY</th>
+                        <th scope="col" class="sortable">COUNTRY</th>
+                        <th scope="col" class="sortable">SOURCE</th>
+                        <th scope="col" class="sortable">DATE</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for broadcast in broadcasts %}
+                    <tr class="broadcast-row" data-id="{{ broadcast.id }}">
+                        <td>
+                            <span class="badge badge-success">
+                                <span class="green-dot"></span>
+                                {{ broadcast.get_type_display }}
+                            </span>
+                        </td>
+                        <td>{{ broadcast.brand }}</td>
+                        <td>
+                            <div class="title" data-full-title="{{ broadcast.title }}">
+                                {{ broadcast.title|truncatewords:6 }}
+                            </div>
+                            <div>
+                                {{ broadcast.get_category_display }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge-secondary">
+                                {{ broadcast.get_condition_display }}
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </td>
+                        <td>{{ broadcast.price }}</td>
+                        <td>{{ broadcast.quantity }}</td>
+                        <td><img src="https://www.countryflags.io/{{ broadcast.country }}/flat/32.png" alt="{{ broadcast.country }}"></td>
+                        <td>{{ broadcast.source }}</td>
+                        <td>{{ broadcast.date_created|date:"Y-m-d" }}</td>
+                        <td>
+                            <button class="btn btn-outline-secondary bookmark-button btn-sm copy-button" data-id="{{ broadcast.id }}">
+                                {% if broadcast_statuses|get_item:broadcast.id %}
+                                    <i class="fas fa-bookmark"></i>
+                                {% else %}
+                                    <i class="far fa-bookmark"></i>
+                                {% endif %}
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm copy-button" data-id="{{ broadcast.id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" class="light-blue" style="transform: scale(0.8, 0.8);"><path fill="RGB(3, 42, 81)" fill-rule="evenodd" d="M9.293 5.293a1 1 0 0 1 1.414 0L16 10.586a2 2 0 0 1 0 2.828l-5.293 5.293a1 1 0 0 1-1.414-1.414L14.586 12 9.293 6.707a1 1 0 0 1 0-1.414Z" clip-rule="evenodd"></path></svg>                                </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="title-card" id="titleCard"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Manual Input Modal -->
+    <div class="modal fade" id="manualInputModal" tabindex="-1" aria-labelledby="manualInputModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manualInputModalLabel">Generate a new broadcast</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="broadcastTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="manual-input-tab" data-toggle="tab" href="#manual-input" role="tab" aria-controls="manual-input" aria-selected="true">Manual Input</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="generate-ai-tab" data-toggle="tab" href="#generate-ai" role="tab" aria-controls="generate-ai" aria-selected="false">Generate with AI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="upload-csv-tab" data-toggle="tab" href="#upload-csv" role="tab" aria-controls="upload-csv" aria-selected="false">Upload a CSV file</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="send-whatsapp-tab" data-toggle="tab" href="#send-whatsapp" role="tab" aria-controls="send-whatsapp" aria-selected="false">Send with WhatsApp</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="broadcastTabContent">
+                        <div class="tab-pane fade show active" id="manual-input" role="tabpanel" aria-labelledby="manual-input-tab">
+                            <div class="container mt-4">
+                                <h5>Broadcasts list</h5>
+                                <form id="mainBroadcastForm" method="post" action="{% url 'broadcast_add' %}">
+                                    {% csrf_token %}
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">TYPE</th>
+                                                <th scope="col">BRAND</th>
+                                                <th scope="col">TITLE</th>
+                                                <th scope="col">CONDITION</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">PRICE</th>
+                                                <th scope="col">CUR</th>
+                                                <th scope="col">CATEGORY</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ form.type }}</td>
+                                                <td>{{ form.brand }}</td>
+                                                <td>{{ form.title }}</td>
+                                                <td>{{ form.condition }}</td>
+                                                <td>{{ form.quantity }}</td>
+                                                <td>{{ form.price }}</td>
+                                                <td>{{ form.currency }}</td>
+                                                <td>{{ form.category }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editBroadcastModal" onclick="editBroadcast(this)">More</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="9">
+                                                    <button type="button" class="btn btn-outline-primary">+ Add product</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    {{ form.source.as_hidden }}
+                                    {{ form.description.as_hidden }}
+                                    {{ form.country.as_hidden }}
+                                    <button type="submit" class="btn btn-primary">Publish</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Other tabs content -->
+                        <div class="tab-pane fade" id="generate-ai" role="tabpanel" aria-labelledby="generate-ai-tab">
+                            <!-- Content for Generate with AI tab -->
+                        </div>
+                        <div class="tab-pane fade" id="upload-csv" role="tabpanel" aria-labelledby="upload-csv-tab">
+                            <!-- Content for Upload a CSV file tab -->
+                        </div>
+                        <div class="tab-pane fade" id="send-whatsapp" role="tabpanel" aria-labelledby="send-whatsapp-tab">
+                            <!-- Content for Send with WhatsApp tab -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Broadcast Modal -->
+    <div class="modal fade edit-broadcast-modal" id="editBroadcastModal" tabindex="-1" aria-labelledby="editBroadcastModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editBroadcastModalLabel">Edit broadcast</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editBroadcastForm">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            {{ form.type }}
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            {{ form.brand }}
+                        </div>
+                        <div class="form-group">
+                            <label for="condition">Condition</label>
+                            {{ form.condition }}
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">Grade</label>
+                            {{ form.grade }}
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            {{ form.quantity }}
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            {{ form.price }}
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            {{ form.currency }}
+                        </div>
+                        <div class="form-group">
+                            <label for="source">Source</label>
+                            {{ form.source }}
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            {{ form.country }}
+                        </div>
+                        <div class="form-group">
+                            <label for="new_category">New Category</label>
+                            {{ form.new_category }}
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary" id="addSpecification">Add specification</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard changes</button>
+                    <button type="button" class="btn btn-warning" onclick="previewChanges()">Preview</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Generate With AI Modal -->
+<div class="modal fade" id="generateWithAiModal" tabindex="-1" aria-labelledby="generateWithAiModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generateWithAiModalLabel">Generate a new broadcast</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <h2>Add Broadcast</h2>
+                    <form method="post" action="{% url 'broadcast_add' %}">
+                        {% csrf_token %}
+                        <div class="broadcast-container">
+                            <textarea name="broadcast_data" placeholder="Write your broadcast matching with the prompt in the next box" style="width:100%" rows="15"></textarea>
+                            <textarea readonly class="broadcast-example" rows="15">Write your broadcast in the following way:
+
+Type: WTS | WTB | ALL
+Brand: Apple
+Title: Meta Quest 3 128GB
+Category: Electronics
+Condition: NEW | USED | ALL
+Price: 465.90 EUR
+Qty: 250
+Country: UK | USA | PK
+Source: whatsapp | fb | ad
+Description: if any
+                            </textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Broadcast</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Import CSV Modal -->
+<div class="modal fade" id="importCSVModal" tabindex="-1" aria-labelledby="importCSVModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importCSVModalLabel">Upload CSV file</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <h2>Import Broadcasts</h2>
+                    <form method="post" action="{% url 'import_broadcasts' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="file">Choose CSV File</label>
+                            <input type="file" class="form-control-file" id="file" name="file" accept=".csv" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Broadcast Details Modal -->
+<div class="modal fade" id="broadcastDetailsModal" tabindex="-1" aria-labelledby="broadcastDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="broadcastDetailsModalLabel">Broadcast Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="broadcastDetailsBody">
+                <!-- Details will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSRF token for JavaScript -->
+<input type="hidden" id="csrfToken" value="{{ csrf_token }}">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchTabs = document.querySelectorAll('.search-tab');
+        const searchOptions = document.querySelectorAll('.search-option');
+        const filterSection = document.getElementById('filter-section');
+
+        searchTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                searchTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        searchOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                searchOptions.forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        window.toggleFilters = function() {
+            if (filterSection.style.display === 'none') {
+                filterSection.style.display = 'block';
+            } else {
+                filterSection.style.display = 'none';
+            }
+        };
+
+        window.clearFilters = function() {
+            document.querySelectorAll('#filter-section select, #filter-section input').forEach(input => {
+                input.value = '';
+            });
+        };
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const csrfToken = document.getElementById('csrfToken').value;
+        const broadcastRows = document.querySelectorAll('.broadcast-row');
+
+        broadcastRows.forEach(row => {
+            row.addEventListener('click', function(event) {
+                // Check if the clicked element is not a bookmark button
+                if (event.target.closest('.bookmark-button')) {
+                    return; // Do nothing if a bookmark button inside the row is clicked
+                }
+
+                const broadcastId = this.getAttribute('data-id');
+
+                fetch(`/broadcasting/details/${broadcastId}/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken,
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('broadcastDetailsBody').innerHTML = `
+                        <p><strong>Type:</strong> ${data.type}</p>
+                        <p><strong>Brand:</strong> ${data.brand}</p>
+                        <p><strong>Title:</strong> ${data.title}</p>
+                        <p><strong>Category:</strong> ${data.category}</p>
+                        <p><strong>Condition:</strong> ${data.condition}</p>
+                        <p><strong>Price:</strong> ${data.price}</p>
+                        <p><strong>Quantity:</strong> ${data.quantity}</p>
+                        <p><strong>Country:</strong> ${data.country}</p>
+                        <p><strong>Source:</strong> ${data.source}</p>
+                        <p><strong>Date Created:</strong> ${data.date_created}</p>
+                        <p><strong>Status:</strong> ${data.status}</p>
+                        <p><strong>Description:</strong> ${data.description}</p>
+                        <p><strong>Currency:</strong> ${data.currency}</p>
+                    `;
+                    $('#broadcastDetailsModal').modal('show');
+                })
+                .catch(error => {
+                    console.error('Error fetching broadcast details:', error);
+                });
+            });
+        });
+
+        document.querySelectorAll('.title').forEach(function(element) {
+            element.addEventListener('mouseenter', function(event) {
+                const titleCard = document.getElementById('titleCard');
+                const rect = element.getBoundingClientRect();
+                titleCard.textContent = element.getAttribute('data-full-title');
+                titleCard.style.display = 'block';
+                titleCard.style.position = 'absolute';
+                titleCard.style.top = `${rect.top + window.scrollY}px`;
+                titleCard.style.left = `${rect.left + window.scrollX}px`;
+            });
+
+            element.addEventListener('mouseleave', function() {
+                const titleCard = document.getElementById('titleCard');
+                titleCard.style.display = 'none';
+            });
+        });
+
+        document.querySelectorAll('.bookmark-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const broadcastId = this.getAttribute('data-id');
+                fetch(`/bookmark/${broadcastId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'bookmarked') {
+                        this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    } else if (data.status === 'removed') {
+                        this.innerHTML = '<i class="far fa-bookmark"></i>';
+                    }
+                })
+                .catch(error => {
+                console.error('Error:', error);
+                });
+            });          
+        });
+    });
+
+    function editBroadcast(button) {
+        var row = button.closest('tr');
+        $('#editBroadcastForm').find('input, select, textarea').each(function() {
+            var fieldName = $(this).attr('name');
+            var fieldValue = $(row).find(`[name=${fieldName}]`).val();
+            $(this).val(fieldValue);
+        });
+    }
+
+    function previewChanges() {
+        // Function to preview changes
+    }
+
+    function saveChanges() {
+        var form = $('#editBroadcastForm');
+        var modal = $('#editBroadcastModal');
+        form.find('input, select, textarea').each(function() {
+            var fieldName = $(this).attr('name');
+            var fieldValue = $(this).val();
+            $(`input[name=${fieldName}], select[name=${fieldName}], textarea[name=${fieldName}]`).val(fieldValue);
+        });
+        modal.modal('hide');
+    }
+    function toggleFilters() {
+        var searchBar = document.querySelector('.border-search-bar');
+        searchBar.classList.toggle('expanded'); // Toggle the 'expanded
+        var filterSection = document.getElementById('filter-section');
+        filterSection.style.display = filterSection.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function applyTypeFilter(type) {
+        var url = new URL(window.location);
+        url.searchParams.set('type', type);
+        window.location.href = url.toString();
+    }
+
+    function clearFilters() {
+        var filterForm = document.getElementById('filter-form');
+        var inputs = filterForm.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            if (input.type === 'select-one') {
+                input.selectedIndex = 0;
+            } else {
+                input.value = '';
+            }
+        });
+    }
+
+    function clearSearch() {
+        var url = new URL(window.location);
+        url.searchParams.delete('search');
+        window.location.href = url.toString();
+    }
+</script>
+{% endblock %}

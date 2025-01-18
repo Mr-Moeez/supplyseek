@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 left-side d-flex align-items-center justify-content-center text-center">
+                <div class="signup-main">
+                    <h1 class="text-white">Trade more, faster 🚀</h1>
+                    <p class="text-white">Broadcast your next opportunity with Supplyseek</p>
+                </div>
+            </div>
+            
+            <div class="verification-form-container col-md-6">
+                <div class="progress-container" style="margin: 0 89px;">
+                    <div class="progress-step active">Account</div>
+                    <div class="progress-step active">Verification</div>
+                    <div class="progress-step">Company Details</div>
+                </div>
+                
+                <div class="verification-title">
+                    <h2>Nice to meet you, {{ request.session.user_info.first_name }}</h2>
+                    <p>Now, let’s verify your account. Enter the codes we sent you below.</p>
+                </div>
+
+                <form id="otp-form" method="post" action="{% url 'authentication_app:verify_email' %}">
+                    {% csrf_token %}
+                    <div  class="verification-form">
+                        <div class="verification-field">
+                            <label for="otp"><i class="fa fa-envelope"></i> Email verification code</label>
+                            <p>Enter the verification code we've sent to <strong>{{ request.session.user_info.email }}</strong></p>
+                            {{ form.otp }}
+                            {% if form.otp.errors %}
+                                <span class="invalid-feedback" id="otp-error" style="display: block;">{{ form.otp.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+    
+                        <div id="timer-container">
+                            <p>Resend email code in <span id="resend-timer">01:00</span></p>
+                        </div>
+                        <button id="resend-button" class="btn resend-link" style="display: none;" type="button" onclick="resendOTP()">Resend Email</button>
+                        
+                    </div>
+                    <div class="form-group d-flex justify-content-between" style="margin: 25px">
+                        <a href="{% url 'authentication_app:signup' %}"><i class="fa fa-arrow-left"></i> <strong>Back</strong></a>
+                        <button type="submit" class="btn next-button">Next</button>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Timer for resend code
+        let timer = 60;
+        const resendTimer = document.getElementById('resend-timer');
+        const resendButton = document.getElementById('resend-button');
+        const timerContainer = document.getElementById('timer-container');
+        let interval = setInterval(() => {
+            if (timer > 0) {
+                timer--;
+                const minutes = String(Math.floor(timer / 60)).padStart(2, '0');
+                const seconds = String(timer % 60).padStart(2, '0');
+                resendTimer.textContent = `${minutes}:${seconds}`;
+            } else {
+                clearInterval(interval);
+                timerContainer.style.display = 'none';
+                resendButton.style.display = 'inline-flex';
+            }
+        }, 1000);
+
+        function resendOTP() {
+            fetch("{% url 'authentication_app:resend_otp' %}")
+                .then(response => {
+                    if (response.ok) {
+                        alert("A new OTP has been sent to your email.");
+                        timer = 60; // Reset the timer
+                        resendButton.style.display = 'none';
+                        timerContainer.style.display = 'block';
+                        resendTimer.textContent = '01:00';
+                        interval = setInterval(() => {
+                            if (timer > 0) {
+                                timer--;
+                                const minutes = String(Math.floor(timer / 60)).padStart(2, '0');
+                                const seconds = String(timer % 60).padStart(2, '0');
+                                resendTimer.textContent = `${minutes}:${seconds}`;
+                            } else {
+                                clearInterval(interval);
+                                timerContainer.style.display = 'none';
+                                resendButton.style.display = 'inline-flex';
+                            }
+                        }, 1000);
+                    } else {
+                        alert("Failed to resend OTP. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    alert("An error occurred. Please try again.");
+                });
+        }
+        document.getElementById('id_otp').addEventListener('input', () => {
+            document.getElementById('otp-error').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

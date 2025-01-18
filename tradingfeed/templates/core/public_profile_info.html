@@ -1,0 +1,117 @@
+{% extends 'core/my_profile.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block publicProfile %}
+<link rel="stylesheet" href="{% static './css/my_profile.css' %}" />
+
+<div class="bg-white p-4 rounded">
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}  
+        <div class="form-row">
+            <div>
+                <h5>Company Logo</h5>
+                {% if company and company.company_logo %}
+                    <img src="{{ company.company_logo.url }}" alt="company_logo" width="100px" height="100px" class="rounded-circle" />
+                {% else %}
+                    <img src="{% static 'path_to_default_company_logo.png' %}" alt="company_logo" width="100px" height="100px" class="rounded-circle" />
+                {% endif %}
+            </div>
+            <div class="form-group col-md-12">
+                {{ form.company_logo }}
+                {% if form.company_logo.errors %}
+                    <div class="invalid-feedback">{{ form.company_logo.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-section">
+            <h5>About Company</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="id_type">Business type</label>
+                    {{ form.type|add_class:"form-control" }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_incoterm">Standard Incoterm</label>
+                    <input type="text" id="id_incoterm" name="incoterm" class="form-control" value="{{ company.incoterm }}">
+                </div>
+            </div>
+            <label for="id_description">Description</label>
+            {{ form.description|add_class:"form-control" }}
+        </div>
+
+        <div class="form-section">
+            <h5>Company Information</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="id_name">Company name</label>
+                    <input type="text" class="form-control" id="id_name" name="name" value="{{ form.name.value }}" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_website">Website</label>   
+                    <input type="text" class="form-control" id="id_website" name="website" value="{{ form.website.value }}" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_country">Country</label>               
+                    <input type="text" class="form-control" id="id_country" name="country" value="{{ form.country.value }}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="id_state">State</label>
+                    <input type="text" class="form-control" id="id_state" name="state" value="{{ form.state.value }}" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_city">City</label>
+                    <input type="text" class="form-control" id="id_city" name="city" value="{{ form.city.value }}" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_postal_code">Postal code</label>
+                    <input type="text" class="form-control" id="id_postal_code" name="postal_code" value="{{ form.postal_code.value }}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="id_registration_number">Company Registration Number</label>
+                    <input type="text" class="form-control" id="id_registration_number" name="registration_number" value="{{ form.registration_number.value }}" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_vat_for_eu">VAT for EU</label>
+                    <input type="text" class="form-control" id="id_vat_for_eu" name="vat_for_eu" value="{{ form.vat_for_eu.value }}" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h5>Contact Information</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="id_phone_number">Phone Number</label>
+                    {{ form.phone_number|add_class:"form-control" }}
+                </div>
+                <div class="col-md-4">
+                    <label for="id_email">Email</label>
+                    {{ form.email|add_class:"form-control" }}
+                </div>
+                <div class="col-md-4">
+                    <label for="id_linkedin">LinkedIn</label>
+                    {{ form.linkedin|add_class:"form-control" }}
+                </div>
+                <div class="col-md-4">
+                    <label for="id_facebook">Facebook</label>
+                    {{ form.facebook|add_class:"form-control" }}
+                </div>
+                <div class="col-md-4">
+                    <label for="id_instagram">Instagram</label>
+                    {{ form.instagram|add_class:"form-control" }}
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn btn-secondary">Discard</button>
+            <button type="submit" class="btn btn-primary" style="background-color:RGB(15 42 109)!important">Save Changes</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

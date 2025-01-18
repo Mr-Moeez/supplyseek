@@ -1,0 +1,67 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static './css/login.css' %}" />
+    
+</head>
+<body>
+
+<div class="login-container">
+    <div class="left-half css-1je6ctz">
+        <h2>SupplySeek</h2>
+        <br>
+        <div class="info-item">
+            <p><h5>1. Powerful tools to organize trading</h5>
+            Free up time so you can focus on making new connections and growing your business.</p>
+        </div>
+        <div class="info-item">
+            <h5>2. Premium verification for safety</h5>
+            <p>Ensures the reliability and trustworthiness of trading partners and safeguards your interests.</p>
+        </div>
+        <div class="info-item">
+            <h5>3. Get real-time information</h5>
+            <p>Monitor the markets 24/7 and get real-time information of offers and requests into a single, unified platform.</p>
+        </div>
+    </div>
+    <div class="right-half">
+        <p class="chakra-text css-d526n5"><span><span>Please register or log in to continue<br></span></span></p>
+        <p class="chakra-text css-tp9y9j"><span><span>Don’t worry, it’s painless. You can start today!<br></span></span></p>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Email address">
+                {% if form.username.errors %}
+                    <div class="invalid-feedback" style="display: block;">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                {% if form.password.errors %}
+                    <div class="invalid-feedback" style="display: block;">{{ form.password.errors }}</div>
+                {% endif %}
+            </div>
+            {% if form.non_field_errors %}
+                <div class="login-error">
+                    {% for error in form.non_field_errors %}
+                        {{ error|slice:":46" }}  
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+            
+        </form>
+        <div class="chakra-stack css-1q8bs4s"><p class="chakra-text css-5rjrii">Don't have an account yet?</p><div class="css-1m8iww1"><p class="chakra-text css-6psokr"><a href="{% url 'authentication_app:signup' %}" class="css-6psokr">Register</a></p></div></div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

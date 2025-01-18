@@ -1,0 +1,188 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static './css/my_broadcast.css' %}" />
+<div class="d-flex justify-content-between align-items-center head">
+  <h5>My Bookmarks</h5>
+  <div class="actions">
+    <a class="btn-custom" href="{% url 'delete_all_bookmarks' %}">
+      <i class="fas fa-trash-alt"></i> <b>Delete All</b>
+    </a>
+    <a class="btn-custom" href="{% url 'export_bookmarks_csv' %}"
+      ><i class="fas fa-file-export"></i> <b>Export</b></a
+    >
+  </div>
+</div>
+<div class="card container">
+  <div class="card-body">
+    <div class="table-header-above">
+      <div id="totalPublished">
+        Total &nbsp;| &nbsp;<span id="totalCount">{{ bookmarks|length }}</span>
+        Bookmarks
+      </div>
+
+      <!-- <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search" />
+      </div> -->
+    </div>
+    <div class="table-responsive">
+      {% if bookmarks %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="sortable">TYPE</th>
+            <th scope="col" class="sortable">BRAND</th>
+            <th scope="col" class="sortable">TITLE & CATEGORY</th>
+            <th scope="col" class="sortable">CONDITION</th>
+            <th scope="col" class="sortable">PRICE</th>
+            <th scope="col" class="sortable">QTY</th>
+            <th scope="col" class="sortable">COUNTRY</th>
+            <th scope="col" class="sortable">SOURCE</th>
+            <th scope="col" class="sortable">DATE</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bookmark in bookmarks %}
+          <tr class="broadcast-row" data-id="{{ bookmark.broadcast.id }}">
+            <td>
+              <span class="badge badge-success">
+                <span class="green-dot"></span>
+                {{ bookmark.broadcast.get_type_display }}
+              </span>
+            </td>
+            <td>{{ bookmark.broadcast.brand }}</td>
+            <td>
+              <div
+                class="title"
+                data-full-title="{{ bookmark.broadcast.title }}"
+              >
+                {{ bookmark.broadcast.title|truncatewords:6 }}
+              </div>
+              <div>{{ bookmark.broadcast.get_category_display }}</div>
+            </td>
+            <td>
+              <span class="badge-secondary">
+                {{ bookmark.broadcast.get_condition_display }}
+                <i class="fas fa-star"></i>
+              </span>
+            </td>
+            <td>{{ bookmark.broadcast.price }}</td>
+            <td>{{ bookmark.broadcast.quantity }}</td>
+            <td>
+              <img
+                src="https://www.countryflags.io/{{ bookmark.broadcast.country }}/flat/32.png"
+                alt="{{ bookmark.broadcast.country }}"
+              />
+            </td>
+            <td>{{ bookmark.broadcast.source }}</td>
+            <td>{{ bookmark.broadcast.date_created|date:"Y-m-d" }}</td>
+            <td>
+              <a
+                href="{% url 'delete_bookmark' bookmark.broadcast.id %}"
+                class="btn btn-outline-primary btn-sm copy-button"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </a>
+              <button
+                class="btn btn-outline-primary btn-sm copy-button"
+                data-id="{{ bookmark.broadcast.id }}"
+              >
+                <i class="fas fa-greater-than" style="color: #0f2a6d"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+            <div class="no-bookmarks" style="width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; border: 1px solid #ccc; border-radius: 10px; margin-top: 20px;">
+                <p style="font-size: 18px; color: #555;">No broadcasts bookmarked yet</p>
+            </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Broadcast Details Modal -->
+<div
+  class="modal fade"
+  id="broadcastDetailsModal"
+  tabindex="-1"
+  aria-labelledby="broadcastDetailsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="broadcastDetailsModalLabel">
+          Broadcast Details
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="broadcastDetailsBody">
+        <!-- Details will be loaded here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSRF token for JavaScript -->
+<input type="hidden" id="csrfToken" value="{{ csrf_token }}" />
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const csrfToken = document.getElementById("csrfToken").value;
+    const broadcastRows = document.querySelectorAll(".broadcast-row");
+
+    broadcastRows.forEach((row) => {
+      row.addEventListener("click", function () {
+        const broadcastId = this.getAttribute("data-id");
+
+        fetch(`/broadcasting/details/${broadcastId}/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            document.getElementById("broadcastDetailsBody").innerHTML = `
+                    <p><strong>Type:</strong> ${data.type}</p>
+                    <p><strong>Brand:</strong> ${data.brand}</p>
+                    <p><strong>Title:</strong> ${data.title}</p>
+                    <p><strong>Category:</strong> ${data.category}</p>
+                    <p><strong>Condition:</strong> ${data.condition}</p>
+                    <p><strong>Price:</strong> ${data.price}</p>
+                    <p><strong>Quantity:</strong> ${data.quantity}</p>
+                    <p><strong>Country:</strong> ${data.country}</p>
+                    <p><strong>Source:</strong> ${data.source}</p>
+                    <p><strong>Date Created:</strong> ${data.date_created}</p>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Description:</strong> ${data.description}</p>
+                    <p><strong>Currency:</strong> ${data.currency}</p>
+                `;
+            $("#broadcastDetailsModal").modal("show");
+          })
+          .catch((error) => {
+            console.error("Error fetching broadcast details:", error);
+          });
+      });
+    });
+  });
+</script>
+{% endblock %}

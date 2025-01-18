@@ -1,0 +1,207 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% load custom_filters %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static './css/my_broadcast.css' %}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alerts</title>
+</head>
+<body>
+<div class="d-flex justify-content-between align-items-center head">
+  <div class="d-flex justify-content-center align-items-center">
+    <a href="{% url 'create_alert' %}" class="btn btn-outline-secondary btn-sm bookmark-buttona mr-2"> < </a>
+    <h5 style="margin: 0">Alert "{{ alert.name }}"</h5>
+  </div>
+  <div class="actions">
+    <a class="btn-custom"><i class="fas fa-file-export"></i> <b>Export</b></a>
+  </div>
+</div>
+<div class="card container">
+  <div class="card-body">
+    <div class="table-header-above">
+      <div id="totalPublished">
+        My Matched Broadcasts &nbsp;| &nbsp;<span id="totalCount">{{ alert_results|length }}</span> broadcasts
+      </div>
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search" />
+      </div>
+    </div>
+    <div class="table-responsive">
+    {% if alert_results %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="sortable">TYPE</th>
+            <th scope="col" class="sortable">BRAND</th>
+            <th scope="col" class="sortable">TITLE & CATEGORY</th>
+            <th scope="col" class="sortable">CONDITION</th>
+            <th scope="col" class="sortable">PRICE</th>
+            <th scope="col" class="sortable">QTY</th>
+            <th scope="col" class="sortable">COUNTRY</th>
+            <th scope="col" class="sortable">SOURCE</th>
+            <th scope="col" class="sortable">DATE</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in alert_results %}
+          <tr class="broadcast-row" data-id="{{ result.broadcast.id }}">
+            <td>
+              <span class="badge badge-success">
+                <span class="green-dot"></span>
+                {{ result.broadcast.get_type_display }}
+              </span>
+            </td>
+            <td>{{ result.broadcast.brand }}</td>
+            <td>
+              <div class="title" data-full-title="{{ result.broadcast.title }}">
+                {{ result.broadcast.title|truncatewords:6 }}
+              </div>
+              <div>{{ result.broadcast.get_category_display }}</div>
+            </td>
+            <td>
+              <span class="badge-secondary">
+                {{ result.broadcast.get_condition_display }}
+                <i class="fas fa-star"></i>
+              </span>
+            </td>
+            <td>{{ result.broadcast.price }}</td>
+            <td>{{ result.broadcast.quantity }}</td>
+            <td>
+              <img src="https://www.countryflags.io/{{ result.broadcast.country }}/flat/32.png" alt="{{ result.broadcast.country }}" />
+            </td>
+            <td>{{ result.broadcast.source }}</td>
+            <td>{{ result.broadcast.date_created|date:"Y-m-d" }}</td>
+            <td>
+              <button class="btn btn-outline-secondary btn-sm bookmark-button" data-id="{{ result.broadcast.id }}">
+                {% if broadcast_statuses|get_item:result.broadcast.id %}
+                    <i class="fas fa-bookmark"></i>
+                {% else %}
+                    <i class="far fa-bookmark"></i>
+                {% endif %}
+              </button>
+              <button class="btn btn-outline-primary btn-sm copy-button" data-id="{{ result.broadcast.id }}">
+                <i class="fas fa-greater-than" style="color: #0f2a6d"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+            <div class="no-bookmarks" style="width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; border: 1px solid #ccc; border-radius: 10px; margin-top: 20px;">
+                <p style="font-size: 18px; color: #555;">No Alerts yet</p>
+            </div>
+        {% endif %}
+      <!-- CSRF token for JavaScript -->
+      <input type="hidden" id="csrfToken" value="{{ csrf_token }}" />
+    </div>
+  </div>
+</div>
+
+<!-- Broadcast Details Modal -->
+<div
+  class="modal fade"
+  id="broadcastDetailsModal"
+  tabindex="-1"
+  aria-labelledby="broadcastDetailsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="broadcastDetailsModalLabel">
+          Broadcast Details
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="broadcastDetailsBody">
+        <!-- Details will be loaded here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const csrfToken = document.getElementById('csrfToken').value;
+    document.querySelectorAll('.bookmark-button').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const broadcastId = this.getAttribute('data-id');
+            fetch(`/bookmark/${broadcastId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'bookmarked') {
+                    this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                } else if (data.status === 'removed') {
+                    this.innerHTML = '<i class="far fa-bookmark"></i>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });          
+    });
+
+    const broadcastRows = document.querySelectorAll(".broadcast-row");
+    broadcastRows.forEach((row) => {
+      row.addEventListener("click", function () {
+        const broadcastId = this.getAttribute("data-id");
+
+        fetch(`/broadcasting/details/${broadcastId}/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            document.getElementById("broadcastDetailsBody").innerHTML = `
+                    <p><strong>Type:</strong> ${data.type}</p>
+                    <p><strong>Brand:</strong> ${data.brand}</p>
+                    <p><strong>Title:</strong> ${data.title}</p>
+                    <p><strong>Category:</strong> ${data.category}</p>
+                    <p><strong>Condition:</strong> ${data.condition}</p>
+                    <p><strong>Price:</strong> ${data.price}</p>
+                    <p><strong>Quantity:</strong> ${data.quantity}</p>
+                    <p><strong>Country:</strong> ${data.country}</p>
+                    <p><strong>Source:</strong> ${data.source}</p>
+                    <p><strong>Date Created:</strong> ${data.date_created}</p>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Description:</strong> ${data.description}</p>
+                    <p><strong>Currency:</strong> ${data.currency}</p>
+                `;
+            $("#broadcastDetailsModal").modal("show");
+          })
+          .catch((error) => {
+            console.error("Error fetching broadcast details:", error);
+          });
+      });
+    });
+});
+</script>
+</body>
+{% endblock %}

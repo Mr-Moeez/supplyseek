@@ -1,0 +1,13 @@
+<form id="editForm">
+    {% csrf_token %}
+    {{ form.id }} <!-- Make sure the form has an id field -->
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Update Broadcast</button>
+  </form>
+  

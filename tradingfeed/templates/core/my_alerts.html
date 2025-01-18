@@ -1,0 +1,191 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static './css/home.css' %}">
+<link rel="stylesheet" href="{% static './css/alerts.css' %}" />
+<link rel="stylesheet" href="{% static './css/my_broadcast.css' %}" />
+
+<div class="container mt-3">
+  <h2>Create Alert</h2>
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="{{ form.name.id_for_label }}">Name</label>
+      {{ form.name }} {% if form.name.errors %}
+      <div class="invalid-feedback d-block">{{ form.name.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.frequency.id_for_label }}">Frequency</label>
+      {{ form.frequency }} {% if form.frequency.errors %}
+      <div class="invalid-feedback d-block">{{ form.frequency.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.expiry_date.id_for_label }}">Expiry Date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="expiry_date"
+        name="expiry_date"
+      />
+      {% if form.expiry_date.errors %}
+      <div class="invalid-feedback d-block">{{ form.expiry_date.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.notification_channel.id_for_label }}"
+        >Notification Channel</label
+      >
+      {{ form.notification_channel }} {% if form.notification_channel.errors %}
+      <div class="invalid-feedback d-block">
+        {{ form.notification_channel.errors }}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.search.id_for_label }}">Search</label>
+      {{ form.search }} {% if form.search.errors %}
+      <div class="invalid-feedback d-block">{{ form.search.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.category.id_for_label }}">Category</label>
+      {{ form.category }} {% if form.category.errors %}
+      <div class="invalid-feedback d-block">{{ form.category.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.country.id_for_label }}">Country</label>
+      {{ form.country }} {% if form.country.errors %}
+      <div class="invalid-feedback d-block">{{ form.country.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.brand.id_for_label }}">Brand</label>
+      {{ form.brand }} {% if form.brand.errors %}
+      <div class="invalid-feedback d-block">{{ form.brand.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.min_quantity.id_for_label }}">Min Quantity</label>
+      {{ form.min_quantity }} {% if form.min_quantity.errors %}
+      <div class="invalid-feedback d-block">{{ form.min_quantity.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.max_quantity.id_for_label }}">Max Quantity</label>
+      {{ form.max_quantity }} {% if form.max_quantity.errors %}
+      <div class="invalid-feedback d-block">{{ form.max_quantity.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.min_price.id_for_label }}">Min Price</label>
+      {{ form.min_price }} {% if form.min_price.errors %}
+      <div class="invalid-feedback d-block">{{ form.min_price.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.max_price.id_for_label }}">Max Price</label>
+      {{ form.max_price }} {% if form.max_price.errors %}
+      <div class="invalid-feedback d-block">{{ form.max_price.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.currency.id_for_label }}">Currency</label>
+      {{ form.currency }} {% if form.currency.errors %}
+      <div class="invalid-feedback d-block">{{ form.currency.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.type.id_for_label }}">Type</label>
+      {{ form.type }} {% if form.type.errors %}
+      <div class="invalid-feedback d-block">{{ form.type.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.condition.id_for_label }}">Condition</label>
+      {{ form.condition }} {% if form.condition.errors %}
+      <div class="invalid-feedback d-block">{{ form.condition.errors }}</div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Alert</button>
+  </form>
+
+  <h2>Your Alerts</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="sortable">TYPE</th>
+          <th scope="col" class="sortable">ALERT NAME</th>
+          <th scope="col" class="sortable">FREQUENCY</th>
+          <th scope="col" class="sortable">EXP DATE</th>
+          <th scope="col" class="sortable">MATCHED BROADCAST</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if alerts %}
+          {% for alert in alerts %}
+          <tr class="broadcast-row" data-id="{{ broadcast.id }}">
+            <td>
+              <span class="badge badge-success">
+                <span class="green-dot"></span>
+                {{ alert.get_type_display }}
+              </span>
+            </td>
+            <td>{{ alert.name }}</td>
+            <td>{{ alert.frequency }}</td>
+            <td>{{ alert.expiry_date }}</td>
+            <td class="showAlertsButton">
+              <button
+                class="btn btn-outline-secondary btn-sm bookmark-button"
+                data-id="{{ alert.id }}"
+              >
+                <i class="far fa-edit"></i>
+              </button>
+              <a
+                href="{% url 'delete_alert' alert.id %}"
+                class="btn btn-danger btn-sm delete-button"
+                data-id="{{ broadcast.id }}"
+              >
+                <i class="fas fa-trash"></i>
+              </a>
+
+              <a
+                href="{% url 'alert_results' alert.id %}"
+                class="btn btn-outline-secondary btn-sm bookmark-button"
+                data-id="{{ alert.id }}"
+                >See Result
+                <i class="fas fa-greater-than"></i>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        {% else %}
+        <div class="no-bookmarks" style="width: 100%; height: 200px; display: flex; justify-content: center; align-items: center; border: 1px solid #ccc; border-radius: 10px; margin-top: 20px;">
+          <p style="font-size: 18px; color: #555;">No Alerts yet</p>
+        </div>
+      {% endif %}
+      </tbody>
+    </table>
+  </div>
+  {% endblock %}
+</div>

@@ -1,0 +1,1112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.ml-auto {
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+  text-align: center;
+}
+
+.hero {
+  background-image: url('../images/heroBackground.svg'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  z-index: -2;
+
+}
+
+.hero-content {
+  max-width: 620px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 2.5em;
+  margin-bottom: auto;
+}
+
+.hero button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: rgb(255, 199, 0);
+  width: 40px !important;
+}
+
+
+.broadcasts {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+ /* overflow: hidden;
+  height: 1.5rem; */
+  padding: auto;
+  align-items: center;
+}
+
+.broadcasts-container {
+  display: flex; /* Display the broadcast texts in a row */
+  gap: 15px; /* Adjust spacing between texts */
+  overflow: hidden; /* Hide overflowing texts */
+  flex-direction: row;
+  margin-left: 10px;
+}
+
+img box-shadow{
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Your existing styles here */
+
+.broadcasts-text {
+  animation: slide-up 8s infinite;
+  opacity: 0;
+  /*position: absolute;
+  /*text-align: center; /* Center the text horizontally */
+  color: white; /* Text color */
+  background:rgb(13, 38, 89);
+  padding: 10px;
+  justify-content: center;
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(100%); opacity: 0; }
+  10%, 90% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+
+
+.broadcasts div {
+  background: rgb(118, 131, 157); /* Semi-transparent background for contrast */
+  padding-top: 5px;
+  font-size: 0.8em;
+  margin-top: -28px;
+  border-radius: 4px;
+  padding: -1;
+
+}
+
+*, ::after, ::before {
+  box-sizing: content-box; /* or remove it entirely */
+}
+
+
+.broadcasts p {
+  justify-content: center;
+  font-size: 1rem;
+  white-space: nowrap;
+  /* margin: auto; */
+  font-weight: 300;
+  box-sizing:content-box;
+}
+
+/* Search Bar */
+.search-bar {
+	display: flex;
+	align-items: center;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: rgba(255, 255, 255, 0.5);
+	margin-top: 20px;
+	/* width: 55rem; */
+	padding: 7px;
+  margin-left: 17px;
+  margin-right: 30px;
+}
+
+
+.search-input {
+  flex: 1; /* Take up remaining space */
+  border: none;
+  outline: none;
+  background: transparent; /* Transparent background */
+  padding: 10px;
+  font-size: 1rem; /* Adjust font size as needed */
+  color: white !important; /* Text color */
+}
+
+.search-button {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px !important;
+}
+
+.search-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 199, 0); /* Yellow background */
+
+}
+
+.btn-2 {
+  border-radius: 8px;
+  padding: 5px;
+  height: 45px;
+  width: 60px !important;
+  border: 1px solid white;
+  margin-left: 10px;
+  color: #081e32;
+}
+
+.search-btn{
+  background-color: rgb(255, 199, 0);
+  color: black;
+
+}
+
+.search-button-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #242628;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+/* Icon Container */
+.icon-container {
+  display: flex;
+  justify-content: center;
+  gap: 70px; /* Space between icons */
+  margin-top: 20px; /* Space above the icon container */
+  margin-bottom: 30px;
+}
+
+.icon-item {
+  text-align: center;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin-bottom: 0%;
+}
+
+
+.icon-circle {
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 50%; /* Make the background circular */
+  width: 50px; /* Adjust the size as needed */
+  height: 50px; /* Adjust the size as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Center the circle */
+  margin-right: 10px; /* Space between icon and text */
+  gap: 50px;
+}
+
+.icon-item img {
+  width: 50px; /* Adjust icon size as needed */
+  height: 50px;
+}
+
+.icon-item p {
+margin-top: 2px;  font-size: 0.8rem; /* Adjust text size as needed */
+
+}
+
+/* Sliding Bar */
+.sliding-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 30px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 60%;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sliding-bar {
+  overflow: hidden;
+  flex: 1;
+}
+
+.sliding-content {
+  display: flex;
+  animation: slide 15s linear infinite;
+  white-space: nowrap;
+  gap: 30px; /* Space between text items */
+}
+
+.sliding-content span {
+  display: inline-block;
+  padding: 0 10px;
+  color: #333;
+  font-size: 1rem;
+  background: aliceblue;
+  border: 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.sliding-bar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.search-container {
+  margin: 20px auto;
+  text-align: center;
+}
+.search-input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  background: #10244c;
+  /* border: 1px solid #ccc; */
+  color: white;
+  width: 24rem;
+}
+.search-button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffc107;
+  color: #000;
+  cursor: pointer;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.arrow {
+	background-color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 1.5rem;
+	padding: 5px;
+	border-radius: 50%;
+	/* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+	margin: 0 10px;
+	color: rgb(90, 90, 81);
+}
+
+.arrow:hover {
+  background-color: #f0f0f0;
+}
+
+/* HTML Section 2 */
+/* CSS styling */
+.container {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+.inner-container {
+  padding: 16px;
+}
+
+.text {
+font-size: 2rem;
+  color: rgb(13, 38, 89);
+  font-weight: 700;
+  line-height: 2rem;
+
+}
+
+.divider {
+  background-color: #E5E7EB;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Video container */
+.video-container {
+  width: 70%; /* Set width to match the content container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px; /* Add margin-bottom to create space between the video and the footer */
+  position: relative; /* Add relative positioning */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Aspect ratio */
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Aspect ratio iframe */
+.aspect-ratio iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* Set height to 100% */
+  top: 0;
+  left: 0;
+}
+
+/* Image */
+.image {
+  max-width: 100%; /* Ensure the image does not exceed its container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+
+/* Button */
+.get-started {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: teal;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px; /* Add margin to separate from icon container */
+}
+
+.white > path {
+	fill: #fff;
+}
+
+/*Container */
+.container-2{
+    padding-top: 50px;
+
+}
+
+.css-2{
+    border-width: 0px;
+    border-style: solid;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+  }
+
+.space{
+  margin-top: auto;
+}
+
+.inner-containerr{
+  display: flex;
+  padding-inline: 0px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+  }
+
+.box {
+    padding: 2px;
+    margin-bottom: 20px;
+}
+
+.beige-background {
+    background-color: beige;
+    margin-bottom: 20px;
+}
+
+.centered-textt{
+  text-align: center;
+  font-size: 1rem;
+}
+
+.centered-text {
+    text-align: center;
+    font-weight: 700;
+    line-height: 140%;
+    color: rgb(19, 57, 134);
+    max-width: 430px;
+    font-size: 1.75rem;
+}
+
+.divider-2 {
+    height: 1px;
+    background-color: transparent;
+    margin: 20px 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.container-13 {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  position: relative;
+  gap: 8rem;
+}
+
+.inner-container-3, .inner-container-4, .inner-container-5 {
+  border-width: 0px;
+  border-style: solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-container-4, .inner-container-5{
+  height: 25rem;
+}
+
+.inner-div-1, .inner-div-2 {
+  flex: 1;
+  border-width: 0px;
+  border-style: solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.my-svg-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.empty-div {
+  background: rgb(201, 211, 232);
+  height: 265px;
+  width: 1px;
+  position: absolute;
+  top: 50px;
+  right: -5px;
+}
+
+.nested-div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nested-div-child-1, .nested-div-child-2 {
+  flex: 1;
+}
+
+.img-2{
+  max-width: 100%;
+  height: 100%;
+}
+
+
+
+
+/*Container 3*/
+.container-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Add space between elements */
+}
+
+.right-section {
+  flex: 1% 1% 0%;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.content-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.content-box img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+
+.inner-container-5 {
+  padding: 20px;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.right-section-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: var(--space-xs);
+    margin-bottom: var(--space-l);
+    width: 20rem;
+    justify-content: space-between;
+    gap: 90p;
+    gap: inherit;
+    padding: 10px;
+  }
+
+.right-section-item:hover {
+  background-color: #f0f0f0;
+}
+
+.right-section-item .icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.right-section-item span {
+  flex-grow: 1;
+}
+
+/* Container 3 */
+.container-001 {
+  padding-top: 50px;
+    background-color: #E2E8F0;
+}
+
+.inner-containerr-001{
+  display: flex;
+  padding-inline: 0px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+}
+
+.css-001{
+  border-width: 0px;
+  border-style: solid;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+.container-003{
+    width: 100%;
+    margin-inline: auto;
+    padding-inline-start: var(--chakra-space-4);
+    padding-inline-end: var(--chakra-space-4);
+    max-width: 80rem;
+}
+
+[data-aos^="fade"][data-aos^="fade"].aos-animate {
+	opacity: 1;
+	transform: translateZ(0);
+  transition-duration: 1.5s;
+
+}
+
+
+.inner-container-003{
+  display: flex;
+	margin-top: 16px; /* Replace 16px with the actual value of --chakra-space-l */
+	width: 100%;
+	-moz-box-pack: justify;
+	justify-content: space-between;
+	flex-flow: column wrap;
+	gap: 16px; /* Replace 16px with the actual value of --chakra-space-l */
+}
+.inner-div-001{
+
+  display: flex;
+  flex: 1% 1% 0%;
+  flex-direction: column;
+    min-width: 0px;
+  overflow-wrap: break-word;
+  background: rgb(255, 255, 255);
+  background-attachment: scroll;
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 520px;
+  width: 100%;
+  background-position: center center center center;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  align-items: flex-end;
+  border-radius: 8px;
+  border: none;
+  box-shadow: none;
+  background-image: url(../images/aibg.png);
+  height: 50%;
+  width: 70%;
+}
+
+.empty-div-001{
+  background: rgb(201, 211, 232);
+  height: 265px;
+  width: 1px;
+  position: absolute;
+  top: 50px;
+  right: -5px;
+}
+.nested-div-001{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nested-div-child-001, .nested-div-child-002{
+  flex: 1;
+}
+
+.inner-container-004{
+  border-width: 0px;
+  border-style: solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 25rem;
+}
+
+.inner-div-002{
+    position: absolute;
+    top: 55%;
+    left: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    border-width: 0px;
+    border-style: solid;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.image-002{
+  width: 500px;
+  border-style: none;
+
+}
+.img-002{
+  height: 100%;
+}
+
+.broadcasting{
+    text-align: center;
+    margin-right: var(--chakra-space-l);
+    margin-top: var(--chakra-space-m);
+      border-style: solid;
+      border-width: 0px;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+}
+.broadcasting-text{
+    font-weight: 800;
+    font-size: medium;
+    line-height: 140%;
+    color: rgb(75, 92, 122);
+  }
+
+
+/* Responsive Section Div*/
+   .responsive-section {
+    padding: 20px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    justify-content: space-around;
+    margin-inline: auto;
+    max-width: 75rem;  }
+
+.row-02{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-inline: auto;
+  max-width: 75rem;
+
+}
+
+.column {
+    padding: 1rem;
+    box-sizing: border-box;
+}
+.column.large {
+  flex: 1 1 45%; /* Ensure columns take up about 45% of the container width */
+  min-width: 18.75rem;
+
+
+}
+.column.small {
+  flex: 1 1 45%; /* Ensure columns take up about 45% of the container width */
+  min-width: 18.75rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-wrap: break-word;
+  border: 0px;
+  flex: 1 1 0%;
+  padding-top: 1rem;
+}
+
+.content {
+  background-color: white;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex: 1 1 0%;
+  padding: 40px;
+  border-radius: 10px;
+  min-height: 34.5dvh;
+  padding: 0.625rem;
+}
+
+.heading h6 {
+  background-color: rgb(255, 248, 223);
+  padding: 8px;
+  font-weight:700;
+  font-size: 14px;
+  width: 100%;
+}
+
+.detail-container h5 {
+  font-weight:600;
+  color: #4b5c7a;
+}
+
+.subHeadings{
+  margin-top: 20px;
+}
+
+.subHeadings h6{
+  font-weight: 600;
+  color: #647188;
+}
+.subHeadings p{
+ color: rgb(100, 113, 136);
+}
+
+.css-1iyxa9v {
+  display: flex;
+  flex-direction: column;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  background: rgb(255, 255, 255);
+  flex: 1 1 0%;
+  padding: 1rem 1rem 0px;
+  position: relative;
+  height: 50vh;
+  border-radius: 20px;
+}
+
+.css-zkdl1o {
+  padding: 0px;
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.css-1cyi33g, .chakra-card, .css-4lq9em {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
+.chakra-image.css-qxh7fn {
+  max-height: 80%;
+  object-fit: contain;
+  margin-top: 100px;
+  /* margin-bottom: 180px; */
+}
+
+
+.calander-conatiner{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-top: 3rem;
+
+}
+
+.sub-container{
+  display: flex;
+  flex-direction: row;
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 2rem;
+    gap: 30px;
+}
+
+.text-container{
+  width: 30%;
+  background-color: #647188;
+}
+
+/*Calender Styles*/
+.calander{
+  width: 70%;
+
+}
+
+.chakra-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    background-image: url(../images/aibg.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    /* position: relative; */
+    /*height: 57rem; */
+    background-size: 55rem;
+}
+
+.chakra-card {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+  }
+
+.chakra-image {
+    width: 100%;
+    height: auto;
+}
+.chakra-text {
+      font-weight: 800;
+      font-size: medium;
+      line-height: 140%;
+      color: rgb(75, 92, 122);
+  }
+
+
+.inner-content{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 0px;
+    overflow-wrap: break-word;
+    border: 0px;
+    max-width: 100%;
+    flex: 1 1 0%;
+    padding: 2rem;
+}
+
+/*Footer Styles*/
+footer {
+  background-color: #00264f;
+  color: white;
+  padding: 1rem 0rem;
+  min-height: 12.5rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-align: left;
+  justify-content: left;
+}
+
+footer h6 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+footer p, footer a {
+  color: white;
+  padding: 0%;
+  margin-bottom: 0.5rem;
+}
+
+footer a.text-reset {
+  text-decoration: none;
+}
+
+footer a.text-reset:hover {
+  text-decoration: underline;
+}
+footer i{
+  /* font-size: 1.5rem; */
+  color: #ddd;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+footer .border-bottom{
+  color: transparent;
+}
+
+/*Responsiveness*/
+  @media (max-width: 991px) {
+  .content {
+    background-color: white;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex: 1 1 0%;
+    padding: 40px;
+    border-radius: 10px;
+    padding: 0.625rem;
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+
+  .container-13 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .container-13 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .row{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .row-02{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .column.small {
+    width: 90%;
+  }
+
+  .column.large {
+    width: 90%;
+  }
+  .hero {
+      height: auto;
+      padding: 20px;
+  }
+  .hero-content p {
+      font-size: 1.8em; /* Adjusted font size for medium screens */
+  }
+  .broadcasts p {
+      font-size: 1.2rem; /* Adjusted font size for medium screens */
+  }
+  .search-bar {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 1rem;
+      height: 4.5rem;
+      color: white;
+      width: max-content;
+      margin-left: 4rem;
+  }
+  .search-input {
+      font-size: 0.9rem; /* Adjusted font size for medium screens */
+  }
+
+  .icon-container {
+      flex-direction: row;
+      gap: 20px; /* Adjusted gap for medium screens */
+
+  }
+  .icon-item p {
+      font-size: 0.7rem; /* Adjusted font size for medium screens */
+  }
+
+  .hero-content {
+      padding: 10px; /* Adjusted padding for small screens */
+  }
+  .hero-content p {
+      font-size: 1.5em; /* Adjusted font size for small screens */
+  }
+  .icon-container {
+      gap: 10px; /* Adjusted gap for small screens */
+  }
+  .icon-item p {
+      font-size: 0.6rem; /* Adjusted font size for small screens */
+  }
+  .footer {
+    text-align: left;
+  }
+}
+
+.splide__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.css-173ja37 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0px;
+  overflow-wrap: break-word;
+  --card-bg: var(--chakra-colors-chakra-body-bg);
+  color: var(--chakra-colors-chakra-body-text);
+  --card-radius: var(--chakra-radii-md);
+  --card-padding: var(--chakra-space-5);
+  --card-shadow: var(--chakra-shadows-base);
+  border-radius: 8px;
+  border: 0px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  max-width: 100%;
+  flex: 1 1 0%;
+  padding: 2rem;
+  background-color: white;
+
+}

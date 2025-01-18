@@ -1,0 +1,1070 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="{% static './css/pricing.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.11/dist/css/splide.min.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="hero">
+      <div class="hero-content">
+          <p class="main-content"><span><strong>Ready to Join the Revolution?</strong></span></p>
+          <p class="light-content"><span><br> Trade smarter with unmatched B2B trading insights.<br>Cancel anytime.</span></p>
+      </div>
+      <div class="card-stack">
+        <div class="card-1">
+          <div class="css-001">
+            <div class="css-stack-001">
+              <div class="heading"><p class="css-text-001">Basic</p></div>
+
+              <div class="css-stack-002">
+                <div class="css-stack-0021">
+                  <div class="chakra-stack generic-stack">
+                    <div class="generic-item">
+                      <div class="generic-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" fill="none">
+                          <path fill="#9C9B9B" fill-rule="evenodd" d="m12.18 5.787 1.072.862-.001.001a1.22 1.22 0 0 1 0 1.903l-1.072.862a.634.634 0 0 0-.234.567l.15 1.368a1.22 1.22 0 0 1-1.347 1.346l-1.368-.149a.638.638 0 0 0-.566.234l-.863 1.072a1.22 1.22 0 0 1-1.902 0l-.864-1.074a.637.637 0 0 0-.566-.233l-1.369.148a1.22 1.22 0 0 1-1.345-1.346l.148-1.368a.635.635 0 0 0-.233-.566L.748 8.552a1.22 1.22 0 0 1 0-1.903l1.073-.863a.634.634 0 0 0 .234-.566l-.15-1.368a1.22 1.22 0 0 1 1.347-1.346l1.368.147a.633.633 0 0 0 .566-.233l.863-1.072a1.258 1.258 0 0 1 1.902 0l.863 1.072c.136.169.35.257.566.233l1.37-.147a1.22 1.22 0 0 1 1.345 1.346l-.148 1.368a.637.637 0 0 0 .233.567ZM6.482 9.794c.296-.021.57-.169.751-.405l2.373-3.163a.583.583 0 0 0-.934-.7l-2.28 3.04L5.08 7.253a.583.583 0 1 0-.825.825L5.68 9.5c.213.208.505.315.802.294Z" clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="text">
+                  <p class="chakra-text generic-text">Most Popular</p>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-css">
+            <div class="container-css-1">
+              <div class="container-css-2">
+                <p class="container-text-1">$</p>
+                <p class="container-text-2 basic-monthly-plan-price">40</p>
+                <p class="container-text-3">/month</p>
+            </div>
+            <div class="small-stack">
+              <div class="small-stack-1 active-plan" id="monthly-wrapper">
+                  <p class="small-stack-1-text" id="monthly">Monthly</p>
+              </div>
+              <div class="small-stack-2" id="yearly-wrapper">
+                  <p class="small-stack-2-text" id="yearly">Yearly</p>
+                </div>
+              </div>
+            </div>
+          <div class="divider-box"></div>
+          <p class="divider-content basic-monthly-plan-desc">billed monthly, cancel anytime</p>
+            </div>
+            <div class="divider-2"></div>
+            <p class="divider-2-content">Get started today! Connect with thousands of buyers and sellers worldwide.</p>
+            <div class="divider-3"></div>
+                    {% if not user.is_authenticated %}
+                        <button type="button" class="divider-button">
+                          <a href="{% url 'authentication_app:signup' %}">
+                            Start 7-day Free Trial
+                          </a>
+                        </button>
+                    {% else %}
+                        <button type="button" disabled class="divider-button-disabled">
+                            Current Plan
+                        </button>                    
+                    {% endif %}
+            <div class="divider-4"></div>
+            <p class="divider-4-content">Best for traders just starting out.</p>
+            <div class="divider-5">
+              <div class="divider-two"></div>
+            </div>
+            <p class="divider-two-text">Basic includes:</p>
+            <div class="divider-6"></div>
+            <div class="stack-6">
+              <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">30k+ WTB &amp; WTS requests daily</p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <!--Group 2-->
+              <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">Share your offers as broadcasts</p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+               <!--Group 3-->
+               <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">24/7 deal matching alerts </p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+                  <!--Group 4-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Customized search and filters</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                    <!--Group 5-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Multi-broadcast comparison</p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <!--Group 6-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Save your favorite listings</p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                      <!--Group 7-->
+                      <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Limited company profile</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                      <!--Group 7-->
+                      <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                            </div>
+                            <p class="stack-text">Public company profile</p>
+                          </div>
+                        </div>
+                      </div>
+                  <!--Group 8-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                        </div>
+                        <p class="stack-text">Verified company badge </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Group 9-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                        </div>
+                        <p class="stack-text">Company directory access</p>
+                      </div>
+                    </div>
+                  </div>
+                   <!--Group 10-->
+                   <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                        </div>
+                        <p class="stack-text">Multiple users</p>
+                      </div>
+                    </div>
+                  </div>
+                       <!--Group 11-->
+                       <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                            </div>
+                            <p class="stack-text">Dedicated account manager</p>
+                          </div>
+                        </div>
+                      </div>
+                  <!--Group 12-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                        </div>
+                        <p class="stack-text">Custom integration</p>
+                      </div>
+                    </div>
+                  </div>
+                    <!--Group 13-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                          </div>
+                          <p class="stack-text">Advanced analytics and insights  </p>
+                        </div>
+                      </div>
+                    </div>
+                           <!--Group 14-->
+                           <div class="stack-group-1">
+                            <div class="stack-group-1-col">
+                              <div class="stack-group-1-col-text">
+                                <div class="stack-icon">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                                </div>
+                                <p class="stack-text">Priority support and services </p>
+                              </div>
+                            </div>
+                          </div>
+            </div>
+        </div>
+
+        <div class="card-2">
+          <div class="css-001">
+            <div class="css-stack-001">
+              <div class="heading">
+                <p class="css-text-001">Premium</p>
+              </div>
+              <div class="css-stack-002" style="color:rgb(255, 248, 223);">
+                <div class="css-stack-0021" style="background-color: rgb(255, 248, 223);">
+                  <div class="chakra-stack generic-stack">
+                    <div class="generic-item">
+                      <div class="generic-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" fill="evenodd" style="transform: scale(1, 1);">
+                          <path fill="#ff9c00" fill-rule="evenodd" d="m12.18 5.787 1.072.862-.001.001a1.22 1.22 0 0 1 0 1.903l-1.072.862a.634.634 0 0 0-.234.567l.15 1.368a1.22 1.22 0 0 1-1.347 1.346l-1.368-.149a.638.638 0 0 0-.566.234l-.863 1.072a1.22 1.22 0 0 1-1.902 0l-.864-1.074a.637.637 0 0 0-.566-.233l-1.369.148a1.22 1.22 0 0 1-1.345-1.346l.148-1.368a.635.635 0 0 0-.233-.566L.748 8.552a1.22 1.22 0 0 1 0-1.903l1.073-.863a.634.634 0 0 0 .234-.566l-.15-1.368a1.22 1.22 0 0 1 1.347-1.346l1.368.147a.633.633 0 0 0 .566-.233l.863-1.072a1.258 1.258 0 0 1 1.902 0l.863 1.072c.136.169.35.257.566.233l1.37-.147a1.22 1.22 0 0 1 1.345 1.346l-.148 1.368a.637.637 0 0 0 .233.567ZM6.482 9.794c.296-.021.57-.169.751-.405l2.373-3.163a.583.583 0 0 0-.934-.7l-2.28 3.04L5.08 7.253a.583.583 0 1 0-.825.825L5.68 9.5c.213.208.505.315.802.294Z" clip-rule="evenodd"></path>
+                      </svg>
+                      </div>
+                    </div>
+                    <div class="text">
+                    <p class="chakra-text generic-text" style="color: rgb(66, 52, 0);">Verification</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="container-css">
+            <div class="container-css-1">
+            <div class="container-css-2">
+            <p class="container-text-1">$</p>
+            <p class="container-text-2">299</p>
+            <p class="container-text-3">/month</p>
+            </div>
+                <div class="small-stack">
+          <div class="small-stack-1">
+                <p class="small-stack-1-text">Monthly</p>
+            </div>
+              <div class="small-stack-2">
+                  <p class="small-stack-2-text">Yearly</p>
+                </div>
+              </div>
+            </div>
+          <div class="divider-box"></div>
+          <p class="divider-content">billed monthly, cancel anytime</p>
+            </div>
+            <div class="divider-2"></div>
+            <p class="divider-2-content">Establish trust by successfully completing our KYC process to earn your verified status.</p>
+            <div class="divider-3"></div>
+            <button type="button" class="divider-button bg-transparent" style="border-color: rgb(217, 213, 213);"><a href="{% url 'contact' %}" style="color: rgb(135, 135, 140);">Contact Us</a></button>
+            <div class="divider-4"></div>
+            <p class="divider-4-content">If you want to show that you are serious.</p>
+            <div class="divider-5">
+              <div class="divider-two"></div>
+            </div>
+            <p class="divider-two-text">Everything from Basic + </p>
+            <div class="divider-6"></div>
+            <div class="stack-6">
+              <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">30k+ WTB &amp; WTS requests daily</p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <!--Group 2-->
+              <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">Share your offers as broadcasts</p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+               <!--Group 3-->
+               <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">24/7 deal matching alerts </p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+                  <!--Group 4-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Customized search and filters</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                    <!--Group 5-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Multi-broadcast comparison</p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <!--Group 6-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Save your favorite listings</p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                      <!--Group 7-->
+                      <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Limited company profile</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                      <!--Group 7-->
+                      <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Public company profile</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                  <!--Group 8-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Verified company badge </p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!--Group 9-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Company directory access</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                   <!--Group 10-->
+                   <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Multiple users</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                       <!--Group 11-->
+                       <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Dedicated account manager</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                  <!--Group 12-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                        </div>
+                        <p class="stack-text">Custom integration</p>
+                      </div>
+                    </div>
+                  </div>
+                    <!--Group 13-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                          </div>
+                          <p class="stack-text">Advanced analytics and insights  </p>
+                        </div>
+                      </div>
+                    </div>
+                           <!--Group 14-->
+                           <div class="stack-group-1">
+                            <div class="stack-group-1-col">
+                              <div class="stack-group-1-col-text">
+                                <div class="stack-icon">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><circle cx="8" cy="8" r="7.8" fill="#FF4141"></circle><path fill="#FFF" d="m8.8 8 2.9-2.9c.2-.2.2-.6 0-.8-.2-.2-.6-.2-.8 0L8 7.2 5.1 4.3c-.2-.2-.6-.2-.8 0-.2.2-.2.6 0 .8L7.2 8l-2.9 2.9c-.2.2-.2.6 0 .8s.6.2.8 0L8 8.8l2.9 2.9c.2.2.6.2.8 0 .2-.2.2-.6 0-.8L8.8 8z"></path></svg>
+                                </div>
+                                <p class="stack-text">Priority support and services </p>
+                              </div>
+                            </div>
+                          </div>
+            </div>
+        </div>
+        <div class="card-3">
+          <div class="css-001">
+            <div class="css-stack-001">
+              <div class="heading"><p class="css-text-001">Enterprise</p></div>
+              <div class="css-stack-002">
+                <div class="css-stack-0021" style="width: 6rem;">
+                  <div class="chakra-stack generic-stack">
+                    <div class="generic-item">
+                      <div class="text">
+                      <p class="chakra-text generic-text">Custom</p>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-css">
+            <div class="container-css-1">
+            <div class="container-css-2">
+            <p class="container-text-2">Custom</p>
+            </div>
+            </div>
+          <div class="divider-box"></div>
+          <p class="divider-content">get in touch custom solutions</p>
+            </div>
+            <div class="divider-2"></div>
+            <p class="divider-2-content">Request bespoke integrations tailored precisely to your business needs.</p>
+            <div class="divider-3"></div>
+            <button type="button" class="divider-button bg-transparent" style="border-color: rgb(217, 213, 213);"><a href="{% url 'contact' %}" style="color: rgb(135, 135, 140);">Contact Us</a></button>
+            <div class="divider-4"></div>
+            <p class="divider-4-content">For Individual Traders & Small Businesses</p>
+            <div class="divider-5">
+              <div class="divider-two"></div>
+            </div>
+            <p class="divider-two-text">Enterprise includes:</p>
+            <div class="divider-6"></div>
+            <div class="stack-6">
+              <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">30k+ WTB &amp; WTS requests daily</p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <!--Group 2-->
+              <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">Share your offers as broadcasts</p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+               <!--Group 3-->
+               <div class="stack-group-1">
+                <div class="stack-group-1-col">
+                  <div class="stack-group-1-col-text">
+                    <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <p class="stack-text">24/7 deal matching alerts </p>
+                  </div>
+                  <button class="stack-button-1">
+                    <div class="button-inside">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+                  <!--Group 4-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Customized search and filters</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                    <!--Group 5-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Multi-broadcast comparison</p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <!--Group 6-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Save your favorite listings</p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                      <!--Group 7-->
+                      <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Limited company profile</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                      <!--Group 7-->
+                      <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Public company profile</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                  <!--Group 8-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Verified company badge </p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!--Group 9-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Company directory access</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                   <!--Group 10-->
+                   <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Multiple users</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                       <!--Group 11-->
+                       <div class="stack-group-1">
+                        <div class="stack-group-1-col">
+                          <div class="stack-group-1-col-text">
+                            <div class="stack-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <p class="stack-text">Dedicated account manager</p>
+                          </div>
+                          <button class="stack-button-1">
+                            <div class="button-inside">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                  <!--Group 12-->
+                  <div class="stack-group-1">
+                    <div class="stack-group-1-col">
+                      <div class="stack-group-1-col-text">
+                        <div class="stack-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <p class="stack-text">Custom integration</p>
+                      </div>
+                      <button class="stack-button-1">
+                        <div class="button-inside">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                    <!--Group 13-->
+                    <div class="stack-group-1">
+                      <div class="stack-group-1-col">
+                        <div class="stack-group-1-col-text">
+                          <div class="stack-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                          <p class="stack-text">Advanced analytics and insights  </p>
+                        </div>
+                        <button class="stack-button-1">
+                          <div class="button-inside">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                           <!--Group 14-->
+                           <div class="stack-group-1">
+                            <div class="stack-group-1-col">
+                              <div class="stack-group-1-col-text">
+                                <div class="stack-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);"><path fill="#00A779" fill-rule="evenodd" d="M0 8a8 8 0 0 1 8-8 8.01 8.01 0 0 1 8 8A8 8 0 1 1 0 8Zm8.055 3.66 4.563-6.193a.667.667 0 1 0-1.073-.789l-4.152 5.634-2.717-2.174a.667.667 0 1 0-.833 1.041L7.1 11.785a.674.674 0 0 0 .954-.126Z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <p class="stack-text">Priority support and services </p>
+                              </div>
+                              <button class="stack-button-1">
+                                <div class="button-inside">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" style="transform: scale(0.6, 0.6);"><path fill="#BCBEC2" fill-rule="evenodd" d="M12.464.96a11.718 11.718 0 0 0-8.17 3.507A11.328 11.328 0 0 0 .96 12.679 11.308 11.308 0 0 0 12.288 24h.205c6.411-.066 11.56-5.31 11.507-11.72A11.295 11.295 0 0 0 12.464.96ZM11.04 16.84a1.417 1.417 0 0 1 1.391-1.468h.026a1.466 1.466 0 0 1 1.462 1.41 1.416 1.416 0 0 1-1.391 1.47h-.026a1.468 1.468 0 0 1-1.462-1.412Zm.48-9.64v5.76a.96.96 0 1 0 1.92 0V7.2a.96.96 0 1 0-1.92 0Z" clip-rule="evenodd"></path></svg>
+                                </div>
+                              </button>
+                            </div>
+                          </div>
+            </div>
+          </div>
+          <section class="faq-header">
+            <div class="faq-stack">
+            <div class="faq-stack-1">
+            </div>
+            </div>
+              </section>
+              <section class="faq-top">
+                <div class="faq-headings">
+                  <div class="faq-inside">
+                    <div class="faq-text">
+                      <p class="faq-inside-text">Frequently Asked Questions</p>
+                    </div>
+                  </div>
+                  <div class="faq-divider-2"></div>
+                  <p class="faq-text-main">Got Questions?<br>We've Got Answers</p>
+                </div>
+                <div class="sample-divider"></div>
+                <div class="faq-box-container">
+                  <div class="faq-box-inside">
+                    <button class="accordion">
+                      <span>1. What's the difference between Supplyseek Basic and Supplyseek Premium?</span>
+                      <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                              <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+                          </svg>
+                      </div>
+                  </button>
+                   <div class="panel">
+                <div class="panel-content">
+                    <p class="content-inside">
+                        <ul>
+                            <li><b>Sy Basic</b> This is the essential trading toolkit that gives you access to thousands of daily broadcasts. You can simply upload your offers and other users will see your company details. <br>Overall, Supplyseek Basic is a good option if you're new to the platform or have a limited budget. It allows you to test the waters and see if Supplyseek is a good fit for your business needs.</li>
+                            <li class="mt-2"><b>Supplyseek Premium</b> This membership gives you access to all the benefits of the platform, making buying and selling consumer electronics more efficient for you and your business.
+                                <p class="mt-2 mb-2"><b>Benefits of Supplyseek Premium:</b></p>
+                                <ul>
+                                    <li><b>Verified Trader:</b> Showcase your trustworthiness with a verified company badge. Customers are more likely to do business with a verified company.</li>
+                                    <li><b>Company Profile:</b> Create a comprehensive company profile with information about your business and send broadcasts to attract potential partners.</li>
+                                    <li><b>Complete access to the trader database:</b> Search and connect with thousands of active traders on the platform.</li>
+                                    <li><b>Dedicated account manager:</b> Get personalized help from an account manager to find the best matches for your needs.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p class="mt-2">In short, Supplyseek Premium helps you do business faster and more efficiently by allowing you to profile yourself as a trusted trader, reach more potential partners, and get help from an account manager to find the right matches.</p>
+                        <p class="mt-2">Supplyseek Premium gets you access to all the benefits of the platform, making buying and selling consumer electronics more efficient for you and your business.</p>
+                    </p>
+                </div>
+            </div>
+                  <button class="accordion">
+                    <span>2. Can I switch between Supplyseek Basic and Premium?</span>
+                    <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                            <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p class="content-inside">
+                          Yes, you can upgrade or downgrade your subscription anytime. If you upgrade, the changes will take effect immediately, and you'll only be charged the difference. If you downgrade, the changes will take effect at the end of your current billing cycle.
+                        </p>
+                    </div>
+                </div>
+
+                <button class="accordion">
+                  <span>3. How will I be billed for Supplyseek Basic or Supplyseek Premium?</span>
+                  <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                          <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+                      </svg>
+                  </div>
+              </button>
+              <div class="panel">
+                  <div class="panel-content">
+                      <p class="content-inside">
+
+                        All plans are billed as either monthly or annual subscriptions. Annual subscriptions are paid upfront in full. You can cancel your subscription at any time.                      </p>
+                  </div>
+              </div>
+
+              <button class="accordion">
+                <span>4. What are my payment options for Supplyseek Basic or Supplyseek Premium?</span>
+                <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                        <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p class="content-inside">
+                      At this time, we accept credit card payments via Stripe and PayPal through our website. While we currently don't offer a way to pay by invoice, we do provide a receipt after the purchase has been made. </p>
+                </div>
+            </div>
+
+            <button class="accordion">
+              <span>5. Do the Supplyseek Basic and Supplyseek Premium subscriptions auto-renew?</span>
+              <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                      <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+                  </svg>
+              </div>
+          </button>
+          <div class="panel">
+              <div class="panel-content">
+                  <p class="content-inside">
+                    Yes, monthly and annual subscriptions will auto-renew after each billing cycle.</p>
+                  </div>
+          </div>
+
+          <button class="accordion">
+            <span>6. What is Supplyseek’s refund policy?</span>
+            <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                    <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+        </button>
+        <div class="panel">
+            <div class="panel-content">
+                <p class="content-inside">
+                  Supplyseek has a 7-day refund policy from the purchase date after the free trial. If you find that our service doesn’t meet your needs within this period, contact our support team to request a refund.</p>
+                </div>
+        </div>
+
+        <button class="accordion">
+          <span>7. What happens when I cancel?</span>
+          <div aria-hidden="true" focusable="false" class="inside-plus-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" style="transform: scale(1, 1);">
+                  <path fill="#242528" fill-rule="evenodd" d="M8 2c.368 0 .667.298.667.667v4.666h4.666a.667.667 0 1 1 0 1.334H8.667v4.666a.667.667 0 1 1-1.334 0V8.667H2.667a.667.667 0 0 1 0-1.334h4.666V2.667C7.333 2.298 7.632 2 8 2Z" clip-rule="evenodd"></path>
+              </svg>
+          </div>
+      </button>
+      <div class="panel">
+          <div class="panel-content">
+              <p class="content-inside">
+                When you cancel your subscription, you can continue using Supplyseek until the end of your paid period. Once over, your account will revert to the free account with limited features and access.</p>              </div>
+      </div>
+                </div>
+              </section>
+      </div>
+    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        sessionStorage.setItem('plan', 'basic');
+        sessionStorage.setItem('subscription', 'monthly');
+        sessionStorage.setItem('price', '40');
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    });
+    $(document).ready(function() {
+    function updateContent(isYearly) {
+        if (isYearly) {
+            $('.basic-monthly-plan-price').text('25');
+            $('.basic-monthly-plan-desc').text('billed $300 annually, save 40%');
+            $('#yearly-wrapper').addClass('active-plan');
+            $('#monthly-wrapper').removeClass('active-plan');
+            sessionStorage.setItem('plan', 'basic');
+            sessionStorage.setItem('subscription', 'yearly');
+            sessionStorage.setItem('price', '300');
+        } else {
+            $('.basic-monthly-plan-price').text('40');
+            $('.basic-monthly-plan-desc').text('billed monthly, cancel anytime');
+            $('#monthly-wrapper').addClass('active-plan');
+            $('#yearly-wrapper').removeClass('active-plan');
+            sessionStorage.setItem('plan', 'basic');
+            sessionStorage.setItem('subscription', 'monthly');
+            sessionStorage.setItem('price', '119');
+        }
+        sendSessionDataToServer()
+    }
+    function sendSessionDataToServer() {
+        $.ajax({
+            type: 'POST',
+            url: '{% url "authentication_app:update_session" %}',
+            data: {
+                'plan': sessionStorage.getItem('plan'),
+                'subscription': sessionStorage.getItem('subscription'),
+                'price': sessionStorage.getItem('price'),
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                console.log('Session data updated successfully.');
+            },
+            error: function(error) {
+                console.log('Error updating session data:', error);
+            }
+        });
+    }
+    updateContent(false);
+
+    $('#monthly').click(function() {
+        updateContent(false);
+    });
+
+    $('#yearly').click(function() {
+        updateContent(true);
+    });
+});
+</script>
+</body>
+{% endblock %}
